@@ -3,35 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pico Site</title>
+    <title>Pong</title>
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a1a;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            font-family: 'Courier New', monospace;
             color: #f0f0f0;
+            overflow: hidden;
         }
-        .card {
-            text-align: center;
-            padding: 48px 64px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
+        h1 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #e8600a;
         }
-        h1 { font-size: 2.4rem; margin-bottom: 12px; }
-        h1 span { color: #e8600a; }
-        p { color: #aaa; font-size: 1.1rem; }
+        canvas {
+            border: 2px solid #333;
+            border-radius: 4px;
+            background: #111;
+            max-width: 95vw;
+        }
+        .info {
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: #666;
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Welcome to <span>Pico</span></h1>
-        <p>A simple page deployed to pico-site.</p>
-    </div>
+    <h1>Pong</h1>
+    <canvas id="game" width="600" height="400"></canvas>
+    <div class="info">Move mouse to control left paddle · First to 7 wins</div>
+
+    <script>
+        const canvas = document.getElementById('game');
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width, H = canvas.height;
+
+        // Paddle
+        const PW = 10, PH = 70;
+        let paddleY = H / 2 - PH / 2;
+
+        // AI paddle
+        let aiY = H / 2 - PH / 2;
+        const AI_SPEED = 4;
+
+        // Ball
+        let bx = W / 2, by = H / 2;
+        let bvx = 4, bvy = 3;
+        const BALL_SIZE = 8;
+
+        // Score
+        let pScore = 0, aScore = 0;
+        const WIN_SCORE = 7;
+
+        // Mouse control
+        canvas.addEventListener('mousemove', e => {
+            const rect = canvas.getBoundingClientRect();
+            const scaleY = H / rect.height;
+            paddleY = (e.clientY - rect.top) * scaleY - PH / 2;
+            paddleY = Math.max(0, Math.min(H - PH, paddleY));
+        });
+
+        // Touch control
+        canvas.addEventListener('touchmove', e => {
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const scaleY = H / rect.height;
+            paddleY = (e.touches[0].clientY - rect.top) * scaleY - PH / 2;
+            paddleY = Math.max(0, Math.min(H - PH, paddleY));
+        }, { passive: false });
+
+        function resetBall() {
+            bx = W / 2;
+            by = H / 2;
+            bvx = (Math.random() > 0.5 ? 1 : -1) * (3 + Math.random() * 2);
+            bvy = (Math.random() - 0.5) * 6;
+        }
+
+        function drawRect(x, y, w, h, color) {
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, w, h);
+        }
+
+        function drawBall(x, y, s, color) {
+            ctx.fillStyle = color;
+            ctx.fillRect(x - s / 2, y - s / 2, s, s);
+        }
+
+        function drawDashedLine() {
+            ctx.setLineDash([8, 8]);
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(W / 2, 0);
+            ctx.lineTo(W / 2, H);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        function drawScore() {
+            ctx.font = '48px Courier New';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'center';
+            ctx.fillText(pScore, W / 4, 60);
+            ctx.fillText(aScore, 3 * W / 4, 60);
+        }
+
+        function update() {
+            // Move ball
+            bx += bvx;
+            by += bvy;
+
+            // Top/bottom bounce
+            if (by <= BALL_SIZE / 2 || by >= H - BALL_SIZE / 2) {
+                bvy = -bvy;
+            }
+
+            // Left paddle collision
+            if (bx - BALL_SIZE / 2 <= PW + 4 &&
+                bx - BALL_SIZE / 2 >= 0 &&
+                by >= paddleY && by <= paddleY + PH) {
+                bvx = Math.abs(bvx) * 1.05;
+                bvy += (Math.random() - 0.5) * 2;
+            }
+
+            // Right paddle collision
+            if (bx + BALL_SIZE / 2 >= W - PW - 4 &&
+                bx + BALL_SIZE / 2 <= W &&
+                by >= aiY && by <= aiY + PH) {
+                bvx = -Math.abs(bvx) * 1.05;
+                bvy += (Math.random() - 0.5) * 2;
+            }
+
+            // AI movement
+            const aiTarget = by - PH / 2;
+            aiY += (aiTarget - aiY) * 0.08;
+            aiY = Math.max(0, Math.min(H - PH, aiY));
+
+            // Score
+            if (bx < 0) {
+                aScore++;
+                resetBall();
+            }
+            if (bx > W) {
+                pScore++;
+                resetBall();
+            }
+        }
+
+        function draw() {
+            drawRect(0, 0, W, H, '#111');
+            drawDashedLine();
+            drawScore();
+            drawRect(4, paddleY, PW, PH, '#e8600a');
+            drawRect(W - PW - 4, aiY, PW, PH, '#f5a623');
+            drawBall(bx, by, BALL_SIZE, '#fff');
+        }
+
+        function loop() {
+            if (pScore >= WIN_SCORE || aScore >= WIN_SCORE) {
+                const winner = pScore >= WIN_SCORE ? 'You win!' : 'AI wins!';
+                ctx.font = '36px Courier New';
+                ctx.fillStyle = '#e8600a';
+                ctx.textAlign = 'center';
+                ctx.fillText(winner, W / 2, H / 2 - 20);
+                ctx.font = '16px Courier New';
+                ctx.fillStyle = '#888';
+                ctx.fillText('Click to restart', W / 2, H / 2 + 20);
+                return;
+            }
+            update();
+            draw();
+            requestAnimationFrame(loop);
+        }
+
+        canvas.addEventListener('click', () => {
+            if (pScore >= WIN_SCORE || aScore >= WIN_SCORE) {
+                pScore = 0;
+                aScore = 0;
+                resetBall();
+                loop();
+            }
+        });
+
+        resetBall();
+        loop();
+    </script>
 </body>
 </html>
