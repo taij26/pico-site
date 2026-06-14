@@ -1,481 +1,755 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="holonet">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Marvel Chronicle - Multiverse News</title>
+    <title>Galactic Holonet News — The Voice of the Galaxy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Cinzel:wght@700;900&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
+        /* ═══════════════════════════════════════════
+           GALACTIC HOLONET THEME — CSS VARIABLES
+           ═══════════════════════════════════════════ */
         :root {
-            --bg-color: #121214;
-            --paper-color: #1a1a1e;
-            --border-color: #2e2e36;
-            --text-main: #e3e3e6;
-            --text-muted: #a1a1aa;
-            --accent-color: #e23636; /* Marvel Red */
-            --accent-gold: #f39c12;
-            --ink-black: #09090b;
-            --shadow-color: rgba(0, 0, 0, 0.4);
-            --header-font: 'Playfair Display', serif;
-            --logo-font: 'Cinzel', serif;
-            --body-font: 'Montserrat', sans-serif;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --holo-blue: #4fc3f7;
+            --holo-cyan: #00e5ff;
+            --holo-glow: rgba(0, 229, 255, 0.15);
+            --holo-glow-strong: rgba(0, 229, 255, 0.35);
+            --holo-accent: #76ff03;
+            --holo-warn: #ff6e40;
+            --holo-red: #ff1744;
+            --holo-gold: #ffd740;
+            --holo-purple: #b388ff;
+            --bg-deep: #0a0e17;
+            --bg-panel: rgba(10, 18, 30, 0.85);
+            --bg-card: rgba(15, 25, 45, 0.9);
+            --border-holo: rgba(0, 229, 255, 0.25);
+            --border-dim: rgba(0, 229, 255, 0.1);
+            --text-primary: #e0f7fa;
+            --text-secondary: #80deea;
+            --text-muted: #4fc3f799;
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Rajdhani', sans-serif;
+            --font-mono: 'Share Tech Mono', monospace;
+            --transition: all 0.3s ease;
         }
 
-        [data-theme="light"] {
-            --bg-color: #e4e3dd;
-            --paper-color: #f4f3ef;
-            --border-color: #d1d0c9;
-            --text-main: #1c1b18;
-            --text-muted: #5c5a52;
-            --accent-color: #c92c2c;
-            --accent-gold: #b87b00;
-            --ink-black: #1c1b18;
-            --shadow-color: rgba(0, 0, 0, 0.1);
+        /* Light / Bright Holo variant */
+        [data-theme="holo-bright"] {
+            --holo-blue: #0277bd;
+            --holo-cyan: #0097a7;
+            --holo-glow: rgba(0, 151, 167, 0.1);
+            --holo-glow-strong: rgba(0, 151, 167, 0.25);
+            --bg-deep: #e8f0f8;
+            --bg-panel: rgba(232, 240, 248, 0.9);
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --border-holo: rgba(0, 151, 167, 0.3);
+            --border-dim: rgba(0, 151, 167, 0.15);
+            --text-primary: #0a2e3f;
+            --text-secondary: #006064;
+            --text-muted: #00838f99;
         }
 
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ═══════════════════════════════════════════
+           RESET & BASE
+           ═══════════════════════════════════════════ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--body-font);
-            transition: var(--transition);
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
             overflow-x: hidden;
-            padding-bottom: 60px;
+            min-height: 100vh;
+            position: relative;
         }
 
-        /* Top Ticker styling */
-        .ticker-wrap {
-            width: 100%;
-            overflow: hidden;
-            background-color: var(--accent-color);
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 0.9rem;
+        /* Animated starfield background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 30% 65%, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1.5px 1.5px at 55% 15%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(1px 1px at 85% 40%, rgba(255,255,255,0.3), transparent),
+                radial-gradient(1.5px 1.5px at 15% 90%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 45% 50%, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(1.2px 1.2px at 60% 35%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 25% 75%, rgba(255,255,255,0.3), transparent),
+                radial-gradient(1px 1px at 75% 55%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(1.5px 1.5px at 5% 45%, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1px 1px at 95% 70%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 40% 25%, rgba(255,255,255,0.3), transparent),
+                radial-gradient(1px 1px at 65% 90%, rgba(255,255,255,0.5), transparent);
+            background-size: 200px 200px;
+            animation: star-drift 120s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes star-drift {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-200px); }
+        }
+
+        /* Scanline overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 229, 255, 0.015) 2px,
+                rgba(0, 229, 255, 0.015) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ═══════════════════════════════════════════
+           TOP TRANSLUCENT NAV BAR
+           ═══════════════════════════════════════════ */
+        .holonet-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(180deg, rgba(10, 14, 23, 0.95) 0%, rgba(10, 14, 23, 0.8) 100%);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-holo);
+            padding: 0 20px;
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .nav-brand {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 900;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 10px 0;
-            border-bottom: 3px solid var(--ink-black);
+            color: var(--holo-cyan);
+            text-shadow: 0 0 10px var(--holo-glow-strong);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-brand svg {
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 6px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 6px 14px;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--holo-cyan);
+            border-color: var(--border-holo);
+            background: var(--holo-glow);
+            text-shadow: 0 0 8px var(--holo-glow-strong);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-search {
+            background: rgba(0, 229, 255, 0.06);
+            border: 1px solid var(--border-dim);
+            color: var(--text-primary);
+            padding: 6px 14px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            border-radius: 3px;
+            outline: none;
+            width: 200px;
+            transition: var(--transition);
+        }
+
+        .nav-search:focus {
+            border-color: var(--holo-cyan);
+            box-shadow: 0 0 12px var(--holo-glow);
+        }
+
+        .nav-search::placeholder {
+            color: var(--text-muted);
+        }
+
+        .holo-btn {
+            background: transparent;
+            border: 1px solid var(--border-holo);
+            color: var(--holo-cyan);
+            padding: 6px 14px;
+            font-family: var(--font-display);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .holo-btn:hover {
+            background: var(--holo-glow);
+            box-shadow: 0 0 15px var(--holo-glow);
+            border-color: var(--holo-cyan);
+        }
+
+        /* ═══════════════════════════════════════════
+           BREAKING TICKER
+           ═══════════════════════════════════════════ */
+        .ticker-wrap {
+            background: linear-gradient(90deg, rgba(255, 23, 68, 0.15), rgba(255, 110, 64, 0.1));
+            border-bottom: 1px solid rgba(255, 23, 68, 0.3);
+            padding: 8px 0;
+            overflow: hidden;
             position: relative;
-            z-index: 10;
+            z-index: 50;
+        }
+
+        .ticker-label {
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            background: var(--holo-red);
+            color: #fff;
+            font-family: var(--font-display);
+            font-size: 0.6rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            padding: 0 14px;
+            z-index: 2;
+        }
+
+        .ticker-label::after {
+            content: '';
+            position: absolute;
+            right: -20px; top: 0; bottom: 0;
+            width: 20px;
+            background: linear-gradient(90deg, var(--holo-red), transparent);
         }
 
         .ticker {
             display: inline-block;
             white-space: nowrap;
-            padding-right: 100%;
-            animation: ticker-anim 35s linear infinite;
+            padding-left: 120px;
+            animation: ticker-scroll 45s linear infinite;
         }
 
         .ticker-item {
             display: inline-block;
-            padding: 0 40px;
-            position: relative;
+            padding: 0 50px;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
         }
 
-        .ticker-item::after {
-            content: "✦";
-            position: absolute;
-            right: 0;
-            color: var(--accent-gold);
+        .ticker-item::before {
+            content: '▸';
+            color: var(--holo-red);
+            margin-right: 8px;
         }
 
-        @keyframes ticker-anim {
+        @keyframes ticker-scroll {
             0% { transform: translate3d(0, 0, 0); }
             100% { transform: translate3d(-100%, 0, 0); }
         }
 
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Theme Toggle & Controls */
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .controls-right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .paper-info {
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-        }
-
-        .search-box {
-            background-color: var(--paper-color);
-            border: 2px solid var(--border-color);
-            color: var(--text-main);
-            padding: 8px 16px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 4px;
-            outline: none;
-            transition: var(--transition);
-            width: 250px;
-        }
-
-        .search-box:focus {
-            border-color: var(--accent-color);
-        }
-
-        .theme-btn {
-            background-color: var(--paper-color);
-            border: 2px solid var(--border-color);
-            color: var(--text-main);
-            padding: 8px 16px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .theme-btn:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-
-        /* Masthead (Header) */
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 6px double var(--border-color);
-            padding-bottom: 25px;
-        }
-
-        .masthead {
-            font-family: var(--logo-font);
-            font-size: clamp(2.5rem, 7vw, 5.5rem);
-            font-weight: 900;
-            letter-spacing: -2px;
-            line-height: 1;
-            color: var(--text-main);
-            text-transform: uppercase;
-            margin-bottom: 10px;
+        /* ═══════════════════════════════════════════
+           HERO / MASTHEAD
+           ═══════════════════════════════════════════ */
+        .masthead-section {
             position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 40px 20px 30px;
+        }
+
+        .holonet-logo {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .masthead-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--holo-cyan);
+            text-shadow:
+                0 0 20px var(--holo-glow-strong),
+                0 0 40px var(--holo-glow),
+                0 0 80px rgba(0, 229, 255, 0.1);
+            line-height: 1.1;
+        }
+
+        .masthead-subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        .masthead-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 16px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            flex-wrap: wrap;
+        }
+
+        .masthead-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .masthead-meta .live-dot {
+            width: 6px; height: 6px;
+            background: var(--holo-accent);
+            border-radius: 50%;
+            animation: live-pulse 1.5s ease-in-out infinite;
             display: inline-block;
         }
 
-        .masthead span {
-            color: var(--accent-color);
-            text-shadow: 2px 2px 0px var(--shadow-color);
+        @keyframes live-pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--holo-accent); }
+            50% { opacity: 0.4; box-shadow: none; }
         }
 
-        .tagline {
-            font-family: var(--header-font);
-            font-style: italic;
-            font-size: clamp(1rem, 2.5vw, 1.4rem);
-            color: var(--text-muted);
-            margin-bottom: 15px;
+        /* ═══════════════════════════════════════════
+           MAIN GRID LAYOUT
+           ═══════════════════════════════════════════ */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+            position: relative;
+            z-index: 10;
         }
 
-        .meta-bar {
-            display: flex;
-            justify-content: space-between;
-            border-top: 2px solid var(--border-color);
-            border-bottom: 2px solid var(--border-color);
-            padding: 8px 10px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Grid Layout */
-        .newspaper-grid {
+        .holonet-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+            gap: 20px;
         }
 
-        @media (max-width: 1024px) {
-            .newspaper-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        @media (max-width: 1100px) {
+            .holonet-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 650px) {
-            .newspaper-grid {
-                grid-template-columns: 1fr;
-            }
+            .holonet-grid { grid-template-columns: 1fr; }
         }
 
-        /* General Article Box Styling */
-        article {
-            background-color: var(--paper-color);
-            border: 1px solid var(--border-color);
+        /* ═══════════════════════════════════════════
+           ARTICLE CARDS
+           ═══════════════════════════════════════════ */
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-dim);
+            border-radius: 4px;
             padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            transition: var(--transition);
-            box-shadow: 2px 2px 10px var(--shadow-color);
             cursor: pointer;
-            border-radius: 4px;
+            transition: var(--transition);
+            overflow: hidden;
         }
 
-        article:hover {
-            transform: translateY(-4px) scale(1.01);
-            border-color: var(--accent-color);
-            box-shadow: 5px 5px 20px var(--shadow-color);
-        }
-
-        article::before {
-            content: "";
+        .article-card::before {
+            content: '';
             position: absolute;
-            top: 5px;
-            left: 5px;
-            right: 5px;
-            bottom: 5px;
-            border: 1px dashed var(--border-color);
-            pointer-events: none;
-            opacity: 0.5;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--holo-cyan), transparent);
+            opacity: 0;
+            transition: var(--transition);
         }
 
-        .category {
-            font-size: 0.75rem;
+        .article-card:hover {
+            border-color: var(--border-holo);
+            box-shadow:
+                0 0 20px var(--holo-glow),
+                inset 0 0 30px var(--holo-glow);
+            transform: translateY(-3px);
+        }
+
+        .article-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Corner accents */
+        .article-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 12px; height: 12px;
+            border-top: 2px solid var(--holo-cyan);
+            border-left: 2px solid var(--holo-cyan);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .article-card:hover::after {
+            opacity: 0.6;
+        }
+
+        .article-category {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            font-weight: 800;
-            color: var(--accent-color);
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+            color: var(--holo-cyan);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .article-category::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--holo-cyan);
             display: inline-block;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
         }
 
-        .title {
-            font-family: var(--header-font);
-            font-size: 1.4rem;
-            font-weight: 900;
-            line-height: 1.2;
+        .article-title {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .article-card:hover .article-title {
+            color: var(--holo-cyan);
+            text-shadow: 0 0 10px var(--holo-glow);
+        }
+
+        .article-graphic {
+            width: 100%;
+            height: 130px;
             margin-bottom: 12px;
-            color: var(--text-main);
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid var(--border-dim);
+            background: rgba(0, 0, 0, 0.3);
         }
 
-        .title:hover {
-            color: var(--accent-color);
+        .article-graphic svg {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
-        .snippet {
-            font-size: 0.9rem;
+        .article-snippet {
+            font-size: 0.85rem;
             line-height: 1.5;
             color: var(--text-muted);
-            margin-bottom: 15px;
+            margin-bottom: 14px;
+            flex-grow: 1;
         }
 
-        .author-date {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
+        .article-meta {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
             color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
+            letter-spacing: 1px;
+            border-top: 1px solid var(--border-dim);
             padding-top: 10px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
-        /* Hero Article Styling */
-        article.hero {
+        .article-meta .read-more {
+            color: var(--holo-cyan);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .article-meta .read-more:hover {
+            text-shadow: 0 0 8px var(--holo-glow-strong);
+        }
+
+        /* ═══════════════════════════════════════════
+           HERO ARTICLE
+           ═══════════════════════════════════════════ */
+        .article-card.hero {
             grid-column: span 2;
             grid-row: span 2;
             padding: 30px;
-            background: linear-gradient(180deg, var(--paper-color) 0%, rgba(26,26,30,0.95) 100%);
-            border: 3px double var(--border-color);
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 229, 255, 0.04) 100%);
+            border: 1px solid var(--border-holo);
         }
 
-        @media (max-width: 1024px) {
-            article.hero {
+        @media (max-width: 1100px) {
+            .article-card.hero {
                 grid-column: span 2;
                 grid-row: span 1;
             }
         }
 
         @media (max-width: 650px) {
-            article.hero {
+            .article-card.hero {
                 grid-column: span 1;
             }
         }
 
-        article.hero .title {
-            font-size: 2.2rem;
-            letter-spacing: -0.5px;
-            margin-bottom: 15px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
+        .article-card.hero .article-title {
+            font-size: 1.6rem;
+            margin-bottom: 14px;
         }
 
-        article.hero .snippet {
-            font-size: 1rem;
-            line-height: 1.6;
+        .article-card.hero .article-graphic {
+            height: 260px;
+            margin-bottom: 18px;
+            border: 1px solid var(--border-holo);
         }
 
-        /* Custom SVG Graphics */
-        .hero-graphic {
-            width: 100%;
-            height: 250px;
-            background-color: var(--bg-color);
-            border: 3px solid var(--ink-black);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-            border-radius: 4px;
-            box-shadow: 4px 4px 0px var(--border-color);
+        .article-card.hero .article-snippet {
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
 
-        .article-graphic {
-            width: 100%;
-            height: 140px;
-            background-color: var(--bg-color);
-            border: 2px solid var(--border-color);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-radius: 4px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-        }
-
-        .comic-badge {
-            background-color: var(--accent-color);
-            color: white;
-            font-family: var(--logo-font);
-            padding: 10px 20px;
-            font-size: 1.2rem;
-            transform: rotate(-3deg);
-            border: 3px solid var(--ink-black);
-            box-shadow: 3px 3px 0px var(--accent-gold);
-            z-index: 2;
-            text-align: center;
+        .hero-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--holo-red);
+            color: #fff;
+            font-family: var(--font-display);
+            font-size: 0.55rem;
             font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 2px;
+            z-index: 2;
         }
 
-        /* Widgets & Advertising Side Section */
+        /* ═══════════════════════════════════════════
+           SIDE PANEL / WIDGETS
+           ═══════════════════════════════════════════ */
         .side-panel {
             grid-column: span 1;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
         }
 
-        @media (max-width: 1024px) {
-            .side-panel {
-                grid-column: span 2;
-                flex-direction: row;
-            }
-            .side-panel > div {
-                flex: 1;
-            }
+        @media (max-width: 1100px) {
+            .side-panel { grid-column: span 2; }
         }
 
         @media (max-width: 650px) {
-            .side-panel {
-                grid-column: span 1;
-                flex-direction: column;
-            }
+            .side-panel { grid-column: span 1; }
         }
 
         .widget {
-            background-color: var(--paper-color);
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            box-shadow: 2px 2px 10px var(--shadow-color);
+            background: var(--bg-panel);
+            border: 1px solid var(--border-dim);
             border-radius: 4px;
+            padding: 18px;
+            transition: var(--transition);
+        }
+
+        .widget:hover {
+            border-color: var(--border-holo);
+            box-shadow: 0 0 15px var(--holo-glow);
         }
 
         .widget-title {
-            font-family: var(--header-font);
-            font-size: 1.2rem;
-            font-weight: 900;
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 8px;
-            margin-bottom: 12px;
+            color: var(--holo-cyan);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-dim);
             display: flex;
-            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
         }
 
-        .weather-row {
+        .widget-title svg {
+            flex-shrink: 0;
+        }
+
+        /* Weather widget */
+        .holo-weather-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 8px 0;
-            font-size: 0.85rem;
-            border-bottom: 1px solid var(--border-color);
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            border-bottom: 1px solid var(--border-dim);
         }
 
-        .weather-row:last-child {
-            border-bottom: none;
+        .holo-weather-row:last-child { border-bottom: none; }
+
+        .holo-weather-loc {
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
-        .weather-loc {
+        .holo-weather-cond {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .holo-weather-temp {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
             font-weight: 700;
+            color: var(--holo-gold);
         }
 
-        .weather-temp {
-            color: var(--accent-gold);
-            font-weight: 700;
-        }
-
-        .classified-item {
+        /* Imperial notices */
+        .notice-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-dim);
             font-size: 0.8rem;
             line-height: 1.4;
-            padding: 10px 0;
-            border-bottom: 1px dashed var(--border-color);
         }
 
-        .classified-item:last-child {
-            border-bottom: none;
-        }
+        .notice-item:last-child { border-bottom: none; }
 
-        .classified-title {
+        .notice-tag {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
             font-weight: 700;
-            color: var(--accent-color);
+            letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 3px;
+            color: var(--holo-warn);
+            margin-bottom: 4px;
         }
 
-        /* Modal Popup styling */
+        .notice-text {
+            color: var(--text-secondary);
+        }
+
+        /* Fleet tracker */
+        .fleet-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+        }
+
+        .fleet-name { color: var(--text-secondary); }
+
+        .fleet-status {
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .fleet-status.active {
+            background: rgba(118, 255, 3, 0.15);
+            color: var(--holo-accent);
+            border: 1px solid rgba(118, 255, 3, 0.3);
+        }
+
+        .fleet-status.patrol {
+            background: rgba(79, 195, 247, 0.15);
+            color: var(--holo-blue);
+            border: 1px solid rgba(79, 195, 247, 0.3);
+        }
+
+        .fleet-status.docked {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-muted);
+            border: 1px solid var(--border-dim);
+        }
+
+        /* ═══════════════════════════════════════════
+           MODAL / READER
+           ═══════════════════════════════════════════ */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(0, 0, 0, 0.85);
-            z-index: 100;
+            background: rgba(5, 8, 14, 0.92);
+            z-index: 200;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             pointer-events: none;
             transition: var(--transition);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
+            padding: 20px;
         }
 
         .modal-overlay.active {
@@ -484,547 +758,712 @@
         }
 
         .modal-card {
-            background-color: var(--paper-color);
-            border: 4px solid var(--accent-color);
-            max-width: 700px;
-            width: 90%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-holo);
+            max-width: 750px;
+            width: 100%;
             max-height: 85vh;
             overflow-y: auto;
             padding: 40px;
-            box-shadow: 10px 10px 0px var(--ink-black);
             position: relative;
-            transform: translateY(30px);
+            transform: translateY(20px) scale(0.98);
             transition: var(--transition);
-            border-radius: 8px;
+            border-radius: 4px;
+            box-shadow:
+                0 0 40px var(--holo-glow),
+                0 0 80px rgba(0, 229, 255, 0.05);
         }
 
         .modal-overlay.active .modal-card {
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .modal-close {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: var(--accent-color);
-            color: white;
-            border: 2px solid var(--ink-black);
-            font-size: 1.2rem;
-            width: 35px;
-            height: 35px;
+            top: 16px;
+            right: 16px;
+            background: transparent;
+            border: 1px solid var(--border-holo);
+            color: var(--holo-cyan);
+            font-size: 1.1rem;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-weight: 900;
+            border-radius: 3px;
             transition: var(--transition);
-            border-radius: 4px;
+            font-family: var(--font-display);
         }
 
         .modal-close:hover {
-            background-color: var(--ink-black);
-            color: var(--accent-color);
+            background: var(--holo-glow);
+            border-color: var(--holo-cyan);
         }
 
-        .modal-content h2 {
-            font-family: var(--header-font);
-            font-size: 2.2rem;
-            line-height: 1.2;
-            margin-bottom: 15px;
-            color: var(--text-main);
+        .modal-card .article-category {
+            margin-bottom: 12px;
         }
 
-        .modal-content .meta {
+        .modal-card .article-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-meta {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-dim);
+        }
+
+        .modal-body {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .modal-body p {
+            margin-bottom: 16px;
+        }
+
+        .modal-body strong {
+            color: var(--text-primary);
+        }
+
+        /* ═══════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════ */
+        footer {
+            position: relative;
+            z-index: 10;
+            border-top: 1px solid var(--border-dim);
+            padding: 30px 20px;
+            text-align: center;
+            background: rgba(10, 14, 23, 0.6);
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--holo-cyan);
+            text-shadow: 0 0 10px var(--holo-glow);
+            margin-bottom: 8px;
+        }
+
+        .footer-text {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* ═══════════════════════════════════════════
+           LOADING STATE
+           ═══════════════════════════════════════════ */
+        .loading-state {
+            grid-column: span 4;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .holo-spinner {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 20px;
+            border: 2px solid var(--border-dim);
+            border-top-color: var(--holo-cyan);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-family: var(--font-mono);
             font-size: 0.8rem;
             color: var(--text-muted);
+            letter-spacing: 2px;
             text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 25px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
+            animation: blink-text 1.5s ease-in-out infinite;
         }
 
-        .modal-content p {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: var(--text-main);
-            margin-bottom: 20px;
+        @keyframes blink-text {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
         }
 
-        /* Comic Book Action Elements */
-        .pow-badge {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background-color: var(--accent-gold);
-            color: var(--ink-black);
-            font-family: var(--logo-font);
-            font-size: 0.8rem;
-            font-weight: 900;
-            padding: 5px 10px;
-            border: 2px solid var(--ink-black);
-            transform: rotate(8deg);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 50px;
-            border-top: 6px double var(--border-color);
-            padding-top: 30px;
+        .error-state {
+            grid-column: span 4;
             text-align: center;
+            padding: 40px;
+            border: 1px dashed var(--holo-red);
+            border-radius: 4px;
+            background: rgba(255, 23, 68, 0.05);
+        }
+
+        .error-state h3 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--holo-red);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .error-state p {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .no-results {
+            grid-column: span 4;
+            text-align: center;
+            padding: 40px;
+            font-family: var(--font-mono);
             font-size: 0.85rem;
             color: var(--text-muted);
         }
 
-        .footer-logo {
-            font-family: var(--logo-font);
-            font-size: 1.8rem;
-            font-weight: 900;
-            margin-bottom: 10px;
-            color: var(--text-main);
-        }
-
-        .footer-logo span {
-            color: var(--accent-color);
-        }
-
-        .footer-joke {
-            font-style: italic;
-            margin-bottom: 15px;
+        /* ═══════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .nav-inner { flex-direction: column; height: auto; padding: 12px 0; gap: 10px; }
+            .nav-links { justify-content: center; }
+            .nav-search { width: 100%; }
+            .masthead-section { padding: 24px 16px 20px; }
+            .modal-card { padding: 24px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Animated News Ticker -->
+    <!-- ═══════════ NAVIGATION BAR ═══════════ -->
+    <nav class="holonet-nav">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <!-- Holonet logo SVG -->
+                <svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="14" cy="14" r="12" fill="none" stroke="var(--holo-cyan)" stroke-width="1.5"/>
+                    <circle cx="14" cy="14" r="8" fill="none" stroke="var(--holo-cyan)" stroke-width="1" opacity="0.6"/>
+                    <circle cx="14" cy="14" r="4" fill="none" stroke="var(--holo-cyan)" stroke-width="1" opacity="0.4"/>
+                    <circle cx="14" cy="14" r="2" fill="var(--holo-cyan)" opacity="0.8"/>
+                    <line x1="14" y1="0" x2="14" y2="28" stroke="var(--holo-cyan)" stroke-width="0.5" opacity="0.3"/>
+                    <line x1="0" y1="14" x2="28" y2="14" stroke="var(--holo-cyan)" stroke-width="0.5" opacity="0.3"/>
+                </svg>
+                Galactic Holonet
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">HoloNet</a></li>
+                <li><a href="#">Imperial</a></li>
+                <li><a href="#">Rebel</a></li>
+                <li><a href="#">Outer Rim</a></li>
+                <li><a href="#">Droid Net</a></li>
+            </ul>
+            <div class="nav-controls">
+                <input type="text" id="search-input" class="nav-search" placeholder="Search the galaxy..." oninput="handleSearch()">
+                <button class="holo-btn" onclick="toggleTheme()" id="theme-btn">Bright Holo</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════ BREAKING TICKER ═══════════ -->
     <div class="ticker-wrap">
+        <div class="ticker-label">⚡ Breaking</div>
         <div class="ticker">
-            <span class="ticker-item">BREAKING: Rocket Raccoon caught attempting to dismantle Avengers Compound generator for "spare scrap"</span>
-            <span class="ticker-item">WARNING: Sanctum Sanctorum warns of dimensional drift over Queens - please secure all portal keys</span>
-            <span class="ticker-item">NOTICE: Asgardian storm watch in effect, local residents advised to secure umbrellas and metal hats</span>
-            <span class="ticker-item">TVA ALERT: Unregistered timeline variants located. Agents deployed. Stand by...</span>
+            <span class="ticker-item">Death Star exhaust port now covered in drywall — Imperial workers cite "workplace safety concerns"</span>
+            <span class="ticker-item">Stormtrooper Union demands target lenses no wider than 0.5 meters</span>
+            <span class="ticker-item">Grogu spotted in Mos Eisley — local frogs on high alert</span>
+            <span class="ticker-item">HoloNet censors new broadcast schedule to 3 stories per sector per day</span>
+            <span class="ticker-item">Luke Skywalker opens Force Yoga studio in reclaimed Jedi Temple ruins</span>
         </div>
     </div>
 
+    <!-- ═══════════ MASTHEAD ═══════════ -->
+    <div class="masthead-section">
+        <!-- Large Holonet SVG -->
+        <div class="holonet-logo">
+            <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="holo-glow-grad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="var(--holo-cyan)" stop-opacity="0.3"/>
+                        <stop offset="60%" stop-color="var(--holo-cyan)" stop-opacity="0.1"/>
+                        <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+                <circle cx="50" cy="50" r="48" fill="none" stroke="var(--holo-cyan)" stroke-width="1" opacity="0.3"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="var(--holo-cyan)" stroke-width="0.8" opacity="0.4"/>
+                <circle cx="50" cy="50" r="32" fill="none" stroke="var(--holo-cyan)" stroke-width="0.6" opacity="0.5"/>
+                <circle cx="50" cy="50" r="24" fill="none" stroke="var(--holo-cyan)" stroke-width="0.5" opacity="0.6"/>
+                <circle cx="50" cy="50" r="16" fill="none" stroke="var(--holo-cyan)" stroke-width="0.8" opacity="0.7"/>
+                <circle cx="50" cy="50" r="8" fill="none" stroke="var(--holo-cyan)" stroke-width="1" opacity="0.8"/>
+                <circle cx="50" cy="50" r="3" fill="var(--holo-cyan)" opacity="0.9"/>
+                <circle cx="50" cy="50" r="48" fill="url(#holo-glow-grad)"/>
+                <line x1="50" y1="2" x2="50" y2="98" stroke="var(--holo-cyan)" stroke-width="0.3" opacity="0.2"/>
+                <line x1="2" y1="50" x2="98" y2="50" stroke="var(--holo-cyan)" stroke-width="0.3" opacity="0.2"/>
+                <line x1="16" y1="16" x2="84" y2="84" stroke="var(--holo-cyan)" stroke-width="0.2" opacity="0.15"/>
+                <line x1="84" y1="16" x2="16" y2="84" stroke="var(--holo-cyan)" stroke-width="0.2" opacity="0.15"/>
+                <!-- Orbiting dots -->
+                <circle cx="50" cy="2" r="2" fill="var(--holo-cyan)" opacity="0.8">
+                    <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="20s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="98" cy="50" r="1.5" fill="var(--holo-blue)" opacity="0.6">
+                    <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="-360 50 50" dur="30s" repeatCount="indefinite"/>
+                </circle>
+            </svg>
+        </div>
+        <h1 class="masthead-title">Galactic Holonet</h1>
+        <p class="masthead-subtitle">The Voice of the Galaxy Since 19 BBY</p>
+        <div class="masthead-meta">
+            <span><span class="live-dot"></span> LIVE FEED</span>
+            <span id="holo-date">Saturday, June 13, 2026</span>
+            <span>GALACTIC STANDARD TIME</span>
+            <span>CORUSCANT EDITION</span>
+        </div>
+    </div>
+
+    <!-- ═══════════ MAIN GRID ═══════════ -->
     <div class="container">
-        <!-- Controls Bar -->
-        <div class="controls">
-            <div class="paper-info">Issue #42 ✦ Price: 10¢ (or 1 Vibranium Scrap)</div>
-            <div class="controls-right">
-                <input type="text" id="search-input" class="search-box" placeholder="Search the Multiverse..." oninput="handleSearch()">
-                <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">Switch to Light Ink</button>
+        <div class="holonet-grid" id="holonet-grid">
+            <div class="loading-state">
+                <div class="holo-spinner"></div>
+                <div class="loading-text">Transmitting HoloNet Feed…</div>
             </div>
         </div>
 
-        <!-- Masthead -->
-        <header>
-            <h1 class="masthead">The <span>Marvel</span> Chronicle</h1>
-            <p class="tagline">The Multiverse's Most Trusted Source of Heroic Truth & Variant Realities</p>
-            <div class="meta-bar">
-                <span>Vol. 1 ✦ No. 42</span>
-                <span>Saturday, June 13, 2026</span>
-                <span>Earth-616 Edition</span>
-            </div>
-        </header>
-
-        <!-- Main Grid -->
-        <div class="newspaper-grid" id="newspaper-grid">
-            <!-- Dynamically populated by JS -->
-        </div>
-
-        <!-- Hidden Side Panel Template (preserved by JS) -->
+        <!-- Hidden template for side-panel widgets -->
         <div style="display:none;">
             <div class="side-panel" id="side-panel-template">
-                <!-- Weather Widget -->
+
+                <!-- HoloNet Weather Widget -->
                 <div class="widget">
-                    <h3 class="widget-title">Multiverse Weather</h3>
-                    <div class="weather-row">
-                        <span class="weather-loc">Earth-616 (Main)</span>
-                        <span class="weather-temp">72°F / Sunny Portals</span>
+                    <div class="widget-title">
+                        <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="7" cy="7" r="4" fill="none" stroke="var(--holo-gold)" stroke-width="1"/>
+                            <line x1="7" y1="0" x2="7" y2="2" stroke="var(--holo-gold)" stroke-width="1"/>
+                            <line x1="7" y1="12" x2="7" y2="14" stroke="var(--holo-gold)" stroke-width="1"/>
+                            <line x1="0" y1="7" x2="2" y2="7" stroke="var(--holo-gold)" stroke-width="1"/>
+                            <line x1="12" y1="7" x2="14" y2="7" stroke="var(--holo-gold)" stroke-width="1"/>
+                        </svg>
+                        Sector Weather
                     </div>
-                    <div class="weather-row">
-                        <span class="weather-loc">Earth-1610 (Ultimate)</span>
-                        <span class="weather-temp">65°F / Rainy Spider-Webs</span>
+                    <div class="holo-weather-row">
+                        <span class="holo-weather-loc">Coruscant</span>
+                        <span class="holo-weather-cond">Urban / Smog</span>
+                        <span class="holo-weather-temp">22°C</span>
                     </div>
-                    <div class="weather-row">
-                        <span class="weather-loc">Dark Dimension</span>
-                        <span class="weather-temp">No Time / Fire Rain</span>
+                    <div class="holo-weather-row">
+                        <span class="holo-weather-loc">Tatooine</span>
+                        <span class="holo-weather-cond">Dual Sunset</span>
+                        <span class="holo-weather-temp">48°C</span>
                     </div>
-                    <div class="weather-row">
-                        <span class="weather-loc">New Asgard</span>
-                        <span class="weather-temp">Stormy / High Lightning</span>
+                    <div class="holo-weather-row">
+                        <span class="holo-weather-loc">Hoth</span>
+                        <span class="holo-weather-cond">Blizzard</span>
+                        <span class="holo-weather-temp">-42°C</span>
+                    </div>
+                    <div class="holo-weather-row">
+                        <span class="holo-weather-loc">Death Star</span>
+                        <span class="holo-weather-cond">Drywall Overcast</span>
+                        <span class="holo-weather-temp">18°C</span>
+                    </div>
+                    <div class="holo-weather-row">
+                        <span class="holo-weather-loc">Naboo</span>
+                        <span class="holo-weather-cond">Serene / Lakes</span>
+                        <span class="holo-weather-temp">26°C</span>
                     </div>
                 </div>
 
-                <!-- Classifieds Widget -->
+                <!-- Imperial Notices -->
                 <div class="widget">
-                    <h3 class="widget-title">Chronicle Classifieds</h3>
-                    <div class="classified-item">
-                        <div class="classified-title">WANTED: Cybernetic Limbs</div>
-                        <p>Looking for high-quality prosthetic arms. Will trade space batteries. Ask for Rocket.</p>
+                    <div class="widget-title">
+                        <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="10" height="10" rx="1" fill="none" stroke="var(--holo-warn)" stroke-width="1"/>
+                            <line x1="7" y1="5" x2="7" y2="8" stroke="var(--holo-warn)" stroke-width="1.5" stroke-linecap="round"/>
+                            <circle cx="7" cy="10" r="0.8" fill="var(--holo-warn)"/>
+                        </svg>
+                        Imperial Notices
                     </div>
-                    <div class="classified-item">
-                        <div class="classified-title">FOR SALE: Levitation Cloak</div>
-                        <p>Used. Has a mind of its own. Prefers dramatic entries and high places. Contact Sanctum.</p>
+                    <div class="notice-item">
+                        <div class="notice-tag">Alert</div>
+                        <div class="notice-text">All citizens reminded to keep thermal exhaust ports covered at all times.</div>
                     </div>
-                    <div class="classified-item">
-                        <div class="classified-title">SERVICES: Pym Pest Control</div>
-                        <p>We make bugs smaller. Sometimes we make them giant. Results vary. Not legally liable.</p>
+                    <div class="notice-item">
+                        <div class="notice-tag">Curfew</div>
+                        <div class="notice-text">Mos Eisley spaceport curfew extended to 2200 hours. Jawas excepted.</div>
+                    </div>
+                    <div class="notice-item">
+                        <div class="notice-tag">Recruitment</div>
+                        <div class="notice-text">Stormtrooper Corps: 30% discount on target lenses for new recruits.</div>
+                    </div>
+                </div>
+
+                <!-- Fleet Tracker -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="7,1 13,13 1,13" fill="none" stroke="var(--holo-blue)" stroke-width="1"/>
+                        </svg>
+                        Fleet Status
+                    </div>
+                    <div class="fleet-row">
+                        <span class="fleet-name">Death Star II</span>
+                        <span class="fleet-status active">Active</span>
+                    </div>
+                    <div class="fleet-row">
+                        <span class="fleet-name">ISD Avenger</span>
+                        <span class="fleet-status patrol">Patrol</span>
+                    </div>
+                    <div class="fleet-row">
+                        <span class="fleet-name">ISD Executor</span>
+                        <span class="fleet-status docked">Docked</span>
+                    </div>
+                    <div class="fleet-row">
+                        <span class="fleet-name">TIE Fighter Wing 7</span>
+                        <span class="fleet-status active">Active</span>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Footer -->
-        <footer>
-            <div class="footer-logo">The <span>Marvel</span> Chronicle</div>
-            <p class="footer-joke">Disclaimer: Not responsible for memory wipes, timeline pruning, or turning into a variant. Published by S.H.I.E.L.D. Media Group.</p>
-            <p>&copy; 2026 The Marvel Chronicle. All timelines reserved.</p>
-        </footer>
     </div>
 
-    <!-- Modal Popup for reading full articles -->
+    <!-- ═══════════ MODAL ═══════════ -->
     <div class="modal-overlay" id="modal-overlay" onclick="closeArticle()">
         <div class="modal-card" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeArticle()">&times;</button>
-            <div class="modal-content" id="modal-content">
-                <!-- Content injected by JS -->
-            </div>
+            <button class="modal-close" onclick="closeArticle()">✕</button>
+            <div id="modal-content"></div>
         </div>
     </div>
 
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer>
+        <div class="footer-logo">Galactic Holonet</div>
+        <p class="footer-text">Transmitting across all sectors • Imperial-approved content feeds • Not liable for Force-related incidents</p>
+        <p class="footer-text" style="margin-top:6px;">© 2026 Galactic Holonet News Network. All rights reserved in this galaxy and adjacent ones.</p>
+    </footer>
+
+    <!-- ═══════════ JAVASCRIPT ═══════════ -->
     <script>
-        let allArticles = [];
-        let articles = {}; // keyed by ID for modals
+    let allArticles = [];
+    let articlesMap = {};
 
-        // Fetch and load database
-        async function loadArticles() {
-            try {
-                const response = await fetch('articles.json');
-                allArticles = await response.json();
-                
-                // Key by ID for easy modal lookups
-                allArticles.forEach(art => {
-                    articles[art.id] = art;
-                });
-                
-                renderGrid(allArticles);
-            } catch (err) {
-                console.error("Error loading articles database:", err);
-                // Fallback to show an error message in the grid
-                document.getElementById('newspaper-grid').innerHTML = `
-                    <div style="grid-column: span 4; text-align: center; padding: 40px; border: 2px dashed var(--accent-color)">
-                        <h2 style="color: var(--accent-color)">DATABASE OFFLINE</h2>
-                        <p style="margin-top: 10px; color: var(--text-muted)">Failed to fetch articles.json. Make sure the database file exists in the repository root.</p>
+    /* ── Fetch & Load ───────────────────────── */
+    async function loadArticles() {
+        try {
+            const res = await fetch('articles.json');
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            allArticles = await res.json();
+            allArticles.forEach(a => { articlesMap[a.id] = a; });
+            renderGrid(allArticles);
+        } catch (err) {
+            console.error('HoloNet feed error:', err);
+            document.getElementById('holonet-grid').innerHTML = `
+                <div class="error-state">
+                    <h3>⚠ Feed Interrupted</h3>
+                    <p>Failed to fetch articles.json. The HoloNet relay may be down. Check your connection to the nearest Imperial relay station.</p>
+                </div>`;
+        }
+    }
+
+    /* ── SVG Graphics ───────────────────────── */
+    function getGraphicSvg(type) {
+        if (!type) return '';
+
+        if (type === 'death-star') {
+            return `<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="ds-bg" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#0a0e17"/>
+                        <stop offset="100%" stop-color="#1a1040"/>
+                    </linearGradient>
+                    <radialGradient id="ds-glow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="var(--holo-cyan)" stop-opacity="0.4"/>
+                        <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+                <rect width="400" height="180" fill="url(#ds-bg)"/>
+                <!-- Stars -->
+                <circle cx="40" cy="20" r="1" fill="#fff" opacity="0.5"/>
+                <circle cx="120" cy="50" r="0.8" fill="#fff" opacity="0.3"/>
+                <circle cx="300" cy="15" r="1.2" fill="#fff" opacity="0.4"/>
+                <circle cx="360" cy="100" r="0.7" fill="#fff" opacity="0.5"/>
+                <circle cx="80" cy="140" r="1" fill="#fff" opacity="0.3"/>
+                <!-- Death Star body -->
+                <circle cx="200" cy="90" r="60" fill="#1a2332" stroke="var(--holo-cyan)" stroke-width="1" opacity="0.9"/>
+                <circle cx="200" cy="90" r="58" fill="#151d2b"/>
+                <!-- Superlaser dish -->
+                <circle cx="200" cy="90" r="22" fill="#0d1320" stroke="var(--holo-cyan)" stroke-width="0.8" opacity="0.7"/>
+                <circle cx="200" cy="90" r="14" fill="#0a0e17" stroke="var(--holo-cyan)" stroke-width="0.5" opacity="0.5"/>
+                <circle cx="200" cy="90" r="6" fill="var(--holo-cyan)" opacity="0.3"/>
+                <!-- Grid lines on surface -->
+                <ellipse cx="200" cy="90" rx="58" ry="20" fill="none" stroke="var(--holo-cyan)" stroke-width="0.3" opacity="0.3"/>
+                <ellipse cx="200" cy="90" rx="58" ry="40" fill="none" stroke="var(--holo-cyan)" stroke-width="0.3" opacity="0.2"/>
+                <line x1="142" y1="90" x2="258" y2="90" stroke="var(--holo-cyan)" stroke-width="0.3" opacity="0.3"/>
+                <line x1="200" y1="30" x2="200" y2="150" stroke="var(--holo-cyan)" stroke-width="0.3" opacity="0.3"/>
+                <!-- Exhaust port highlight -->
+                <circle cx="200" cy="90" r="3" fill="var(--holo-red)" opacity="0.8">
+                    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <!-- Drywall label -->
+                <rect x="175" y="155" width="50" height="12" rx="1" fill="rgba(255,255,255,0.1)" stroke="var(--holo-warn)" stroke-width="0.5"/>
+                <text x="200" y="164" text-anchor="middle" font-family="monospace" font-size="6" fill="var(--holo-warn)">DRYWALL</text>
+                <!-- Glow effect -->
+                <circle cx="200" cy="90" r="60" fill="url(#ds-glow)"/>
+            </svg>`;
+        }
+
+        if (type === 'stormtrooper-target') {
+            return `<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="st-bg" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#0a0e17"/>
+                        <stop offset="100%" stop-color="#0d1520"/>
+                    </linearGradient>
+                </defs>
+                <rect width="400" height="180" fill="url(#st-bg)"/>
+                <!-- Training range background -->
+                <rect x="0" y="120" width="400" height="60" fill="#0a0e17" opacity="0.5"/>
+                <line x1="0" y1="120" x2="400" y2="120" stroke="var(--holo-cyan)" stroke-width="0.5" opacity="0.2"/>
+                <!-- Target stand -->
+                <rect x="170" y="50" width="60" height="80" rx="2" fill="#111827" stroke="var(--holo-cyan)" stroke-width="0.8" opacity="0.7"/>
+                <!-- Target rings -->
+                <circle cx="200" cy="90" r="30" fill="none" stroke="var(--holo-red)" stroke-width="1" opacity="0.6"/>
+                <circle cx="200" cy="90" r="22" fill="none" stroke="var(--holo-red)" stroke-width="1" opacity="0.5"/>
+                <circle cx="200" cy="90" r="14" fill="none" stroke="#fff" stroke-width="1" opacity="0.4"/>
+                <circle cx="200" cy="90" r="6" fill="var(--holo-red)" opacity="0.3"/>
+                <!-- Stormtrooper silhouette (left side) -->
+                <g transform="translate(60, 40)" opacity="0.6">
+                    <!-- Helmet -->
+                    <ellipse cx="25" cy="20" rx="14" ry="16" fill="#e0e0e0" stroke="#999" stroke-width="0.5"/>
+                    <!-- Visor -->
+                    <path d="M15 16 Q25 12 35 16 L33 24 Q25 28 17 24 Z" fill="#111"/>
+                    <!-- Body -->
+                    <rect x="12" y="36" width="26" height="40" rx="4" fill="#e0e0e0" stroke="#999" stroke-width="0.5"/>
+                    <!-- Blaster -->
+                    <rect x="35" y="42" width="20" height="5" rx="1" fill="#888"/>
+                    <rect x="50" y="40" width="6" height="9" rx="1" fill="#666"/>
+                </g>
+                <!-- Miss indicators -->
+                <text x="280" y="60" font-family="monospace" font-size="8" fill="var(--holo-warn)" opacity="0.6">MISS</text>
+                <text x="280" y="75" font-family="monospace" font-size="8" fill="var(--holo-warn)" opacity="0.5">MISS</text>
+                <text x="280" y="90" font-family="monospace" font-size="8" fill="var(--holo-warn)" opacity="0.4">MISS</text>
+                <text x="280" y="105" font-family="monospace" font-size="8" fill="var(--holo-warn)" opacity="0.3">MISS</text>
+                <!-- Laser bolt trails -->
+                <line x1="100" y1="85" x2="175" y2="85" stroke="var(--holo-red)" stroke-width="1" opacity="0.3" stroke-dasharray="4 4">
+                    <animate attributeName="stroke-dashoffset" values="0;-8" dur="0.5s" repeatCount="indefinite"/>
+                </line>
+                <line x1="100" y1="75" x2="175" y2="75" stroke="var(--holo-red)" stroke-width="1" opacity="0.2" stroke-dasharray="4 4">
+                    <animate attributeName="stroke-dashoffset" values="0;-8" dur="0.7s" repeatCount="indefinite"/>
+                </line>
+                <line x1="100" y1="95" x2="175" y2="95" stroke="var(--holo-red)" stroke-width="1" opacity="0.25" stroke-dasharray="4 4">
+                    <animate attributeName="stroke-dashoffset" values="0;-8" dur="0.6s" repeatCount="indefinite"/>
+                </line>
+            </svg>`;
+        }
+
+        if (type === 'grogu-pod') {
+            return `<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="gt-bg" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#1a1008"/>
+                        <stop offset="100%" stop-color="#0a0e17"/>
+                    </linearGradient>
+                    <radialGradient id="pod-glow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="var(--holo-cyan)" stop-opacity="0.25"/>
+                        <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+                <rect width="400" height="180" fill="url(#gt-bg)"/>
+                <!-- Desert ground -->
+                <path d="M0 140 Q100 130 200 138 Q300 146 400 135 L400 180 L0 180 Z" fill="#1a1510" opacity="0.8"/>
+                <!-- Sand dunes -->
+                <path d="M0 150 Q80 140 160 148 Q240 156 320 145 L400 152 L400 180 L0 180 Z" fill="#151008" opacity="0.6"/>
+                <!-- Floating pod -->
+                <ellipse cx="200" cy="80" rx="45" ry="35" fill="rgba(180,180,200,0.08)" stroke="var(--holo-cyan)" stroke-width="1" opacity="0.6"/>
+                <ellipse cx="200" cy="80" rx="40" ry="30" fill="rgba(200,200,220,0.05)" stroke="var(--holo-cyan)" stroke-width="0.5" opacity="0.4"/>
+                <!-- Grogu (Baby Yoda) silhouette -->
+                <g transform="translate(200, 80)">
+                    <!-- Head -->
+                    <circle cx="0" cy="-8" r="16" fill="#4a7a3a" opacity="0.8"/>
+                    <!-- Ears -->
+                    <ellipse cx="-14" cy="-22" rx="5" ry="12" fill="#4a7a3a" opacity="0.8" transform="rotate(-15, -14, -22)"/>
+                    <ellipse cx="14" cy="-22" rx="5" ry="12" fill="#4a7a3a" opacity="0.8" transform="rotate(15, 14, -22)"/>
+                    <!-- Eyes -->
+                    <circle cx="-5" cy="-10" r="3" fill="#1a3a1a"/>
+                    <circle cx="5" cy="-10" r="3" fill="#1a3a1a"/>
+                    <circle cx="-4" cy="-11" r="1" fill="#fff" opacity="0.8"/>
+                    <circle cx="6" cy="-11" r="1" fill="#fff" opacity="0.8"/>
+                    <!-- Mouth -->
+                    <path d="M-3 0 Q0 3 3 0" fill="none" stroke="#2a5a2a" stroke-width="1"/>
+                    <!-- Body -->
+                    <rect x="-10" y="8" width="20" height="18" rx="6" fill="#4a7a3a" opacity="0.7"/>
+                </g>
+                <!-- Force pinch spark -->
+                <circle cx="250" cy="60" r="2" fill="var(--holo-cyan)" opacity="0.8">
+                    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1s" repeatCount="indefinite"/>
+                </circle>
+                <line x1="230" y1="70" x2="248" y2="62" stroke="var(--holo-cyan)" stroke-width="0.8" opacity="0.5"/>
+                <line x1="235" y1="75" x2="246" y2="64" stroke="var(--holo-cyan)" stroke-width="0.5" opacity="0.3"/>
+                <!-- Frog silhouette (being taken) -->
+                <ellipse cx="270" cy="55" rx="6" ry="4" fill="#2a6a2a" opacity="0.4"/>
+                <circle cx="273" cy="53" r="1.5" fill="#1a4a1a" opacity="0.5"/>
+                <!-- "AYY" text -->
+                <text x="160" y="30" font-family="monospace" font-size="10" fill="var(--holo-cyan)" opacity="0.5">AYY</text>
+                <text x="160" y="30" font-family="monospace" font-size="10" fill="var(--holo-cyan)" opacity="0.5">
+                    <animate attributeName="opacity" values="0.5;0;0.5" dur="2s" repeatCount="indefinite"/>
+                </text>
+                <!-- Glow -->
+                <ellipse cx="200" cy="80" rx="50" ry="40" fill="url(#pod-glow)"/>
+            </svg>`;
+        }
+
+        // Fallback for null or unknown types
+        return `<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="180" fill="#0a0e17"/>
+            <text x="200" y="95" text-anchor="middle" font-family="monospace" font-size="12" fill="var(--text-muted)" opacity="0.4">NO TRANSMISSION</text>
+        </svg>`;
+    }
+
+    /* ── Render Grid ────────────────────────── */
+    function renderGrid(list) {
+        const grid = document.getElementById('holonet-grid');
+        const tmpl = document.getElementById('side-panel-template');
+
+        if (!list.length) {
+            grid.innerHTML = `<div class="no-results">No transmissions match your search parameters.</div>`;
+            return;
+        }
+
+        let html = '';
+        let nonHeroCount = 0;
+        let sideInjected = false;
+
+        // Hero article first
+        list.forEach(a => {
+            if (a.hero) {
+                const graphic = a.graphic ? `<div class="article-graphic">${getGraphicSvg(a.graphic)}</div>` : '';
+                html += `
+                <article class="article-card hero" onclick="openArticle(${a.id})">
+                    <div class="hero-badge">⚡ Breaking</div>
+                    <div>
+                        <div class="article-category">${escHtml(a.category)}</div>
+                        <h2 class="article-title">${escHtml(a.title)}</h2>
+                        ${graphic}
+                        <p class="article-snippet">${stripHtml(a.content).substring(0, 200)}${stripHtml(a.content).length > 200 ? '…' : ''}</p>
                     </div>
-                `;
-            }
-        }
-
-        // SVGs mapping function
-        function getGraphicSvg(graphicType) {
-            if (graphicType === 'deadpool-wolv') {
-                return `
-                    <svg viewBox="0 0 800 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="deadpool-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#b91c1c"/>
-                                <stop offset="100%" stop-color="#7f1d1d"/>
-                            </linearGradient>
-                            <linearGradient id="wolv-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#fbbf24"/>
-                                <stop offset="100%" stop-color="#b45309"/>
-                            </linearGradient>
-                            <pattern id="halftone" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
-                                <circle cx="4" cy="4" r="2" fill="rgba(0,0,0,0.15)"/>
-                            </pattern>
-                        </defs>
-                        <rect x="0" y="0" width="400" height="300" fill="url(#deadpool-grad)"/>
-                        <rect x="400" y="0" width="400" height="300" fill="url(#wolv-grad)"/>
-                        <rect x="0" y="0" width="800" height="300" fill="url(#halftone)"/>
-                        <line x1="400" y1="0" x2="400" y2="300" stroke="#000000" stroke-width="8"/>
-                        <circle cx="200" cy="150" r="70" fill="#000000"/>
-                        <circle cx="200" cy="150" r="62" fill="#e23636"/>
-                        <rect x="188" y="80" width="24" height="140" fill="#000000"/>
-                        <ellipse cx="160" cy="150" rx="28" ry="32" fill="#000000"/>
-                        <ellipse cx="240" cy="150" rx="28" ry="32" fill="#000000"/>
-                        <path d="M150 145 L175 160 L170 140 Z" fill="#ffffff"/>
-                        <path d="M250 145 L225 160 L230 140 Z" fill="#ffffff"/>
-                        <path d="M500 50 L520 250" stroke="#1e3a8a" stroke-width="15" stroke-linecap="round"/>
-                        <path d="M540 40 L570 260" stroke="#1e3a8a" stroke-width="15" stroke-linecap="round"/>
-                        <path d="M580 50 L620 250" stroke="#1e3a8a" stroke-width="15" stroke-linecap="round"/>
-                        <path d="M500 50 L520 250" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
-                        <path d="M540 40 L570 260" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
-                        <path d="M580 50 L620 250" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
-                        <path d="M60 40 Q150 5 240 40 Q240 80 200 80 L210 105 L170 80 Q60 80 60 40 Z" fill="#ffffff" stroke="#000" stroke-width="3"/>
-                        <text x="150" y="47" font-family="'Impact', sans-serif" font-size="15" text-anchor="middle" fill="#000" font-weight="900">I CHOOSE SHAWARMA!</text>
-                        <path d="M540 210 Q620 170 720 210 Q720 250 680 250 L690 275 L650 250 Q540 250 540 210 Z" fill="#ffffff" stroke="#000" stroke-width="3"/>
-                        <text x="630" y="217" font-family="'Impact', sans-serif" font-size="16" text-anchor="middle" fill="#000" font-weight="900">SNIKT! WE SPLIT IT!</text>
-                    </svg>
-                `;
-            } else if (graphicType === 'spider-web') {
-                return `
-                    <svg viewBox="0 0 400 180" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="sky-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="#1e1b4b"/>
-                                <stop offset="100%" stop-color="#311042"/>
-                            </linearGradient>
-                            <pattern id="halftone2" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
-                                <circle cx="3" cy="3" r="1.5" fill="rgba(255,255,255,0.08)"/>
-                            </pattern>
-                        </defs>
-                        <rect width="400" height="180" fill="url(#sky-grad)"/>
-                        <rect width="400" height="180" fill="url(#halftone2)"/>
-                        <rect x="80" y="40" width="20" height="140" fill="#0c0a09"/>
-                        <rect x="140" y="40" width="20" height="140" fill="#0c0a09"/>
-                        <path d="M80 60 L140 60 M80 100 L140 100" stroke="#0c0a09" stroke-width="6"/>
-                        <path d="M10 80 Q110 40 210 80 Q310 40 390 80" fill="none" stroke="#0c0a09" stroke-width="4"/>
-                        <path d="M200 90 L150 150 M200 90 L250 150 M200 90 L200 180 M200 90 L130 90 M200 90 L270 90 M200 90 L150 30 M200 90 L250 30 M200 90 L200 0" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
-                        <path d="M170 110 A 50 50 0 0 1 230 110 M150 130 A 80 80 0 0 1 250 130 M185 70 A 30 30 0 0 1 215 70 M165 50 A 60 60 0 0 1 235 50" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
-                        <circle cx="340" cy="130" r="12" fill="#e23636"/>
-                        <rect x="337" y="112" width="6" height="30" rx="3" fill="#e23636"/>
-                        <path d="M340 125 Q360 110 370 120 M340 130 Q365 125 372 140 M340 135 Q360 145 365 160 M340 125 Q320 110 310 120 M340 130 Q315 125 308 140 M340 135 Q320 145 315 160" fill="none" stroke="#e23636" stroke-width="3" stroke-linecap="round"/>
-                    </svg>
-                `;
-            } else if (graphicType === 'mystic-wifi') {
-                return `
-                    <svg viewBox="0 0 400 180" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <radialGradient id="portal-grad" cx="50%" cy="50%" r="50%">
-                                <stop offset="70%" stop-color="#f59e0b" stop-opacity="0.8"/>
-                                <stop offset="90%" stop-color="#ea580c" stop-opacity="1"/>
-                                <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-                            </radialGradient>
-                        </defs>
-                        <rect width="400" height="180" fill="#0f172a"/>
-                        <circle cx="200" cy="90" r="80" fill="none" stroke="rgba(245, 158, 11, 0.1)" stroke-width="1"/>
-                        <path d="M120 90 L280 90 M200 10 L200 170" stroke="rgba(245, 158, 11, 0.1)" stroke-width="1"/>
-                        <circle cx="200" cy="90" r="60" fill="none" stroke="url(#portal-grad)" stroke-width="12" stroke-dasharray="10 5 2 5"/>
-                        <circle cx="200" cy="90" r="64" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="5 15"/>
-                        <rect x="180" y="100" width="40" height="12" rx="2" fill="#e2e8f0" stroke="#000" stroke-width="2"/>
-                        <line x1="185" y1="100" x2="185" y2="70" stroke="#e2e8f0" stroke-width="3" stroke-linecap="round"/>
-                        <line x1="215" y1="100" x2="215" y2="75" stroke="#e2e8f0" stroke-width="3" stroke-linecap="round"/>
-                        <path d="M190 60 A 15 15 0 0 1 210 60" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M185 50 A 25 25 0 0 1 215 50" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M175 40 A 38 38 0 0 1 225 40" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                `;
-            } else if (graphicType === 'new-asgard') {
-                return `
-                    <svg viewBox="0 0 400 180" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#38bdf8"/>
-                                <stop offset="60%" stop-color="#bae6fd"/>
-                                <stop offset="100%" stop-color="#0284c7"/>
-                            </linearGradient>
-                        </defs>
-                        <rect width="400" height="180" fill="url(#sky2)"/>
-                        <path d="M0 140 L50 90 L120 120 L200 60 L280 130 L350 100 L400 140 Z" fill="#0f172a"/>
-                        <rect x="0" y="130" width="400" height="50" fill="#0369a1"/>
-                        <path d="M0 135 C 100 130, 200 140, 400 135" fill="none" stroke="#bae6fd" stroke-width="2"/>
-                        <circle cx="330" cy="50" r="22" fill="#b91c1c" stroke="#fff" stroke-width="2"/>
-                        <circle cx="330" cy="50" r="16" fill="#0369a1" stroke="#fff" stroke-width="2"/>
-                        <path d="M327 42 L333 42 L333 58 L327 58 Z M322 36 L338 36 L338 42 L322 42 Z" fill="#ffffff"/>
-                    </svg>
-                `;
-            } else if (graphicType === 'stark-spatula') {
-                return `
-                    <svg viewBox="0 0 400 180" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="400" height="180" fill="#1e293b"/>
-                        <path d="M0 30 L400 30 M0 60 L400 60 M0 90 L400 90 M0 120 L400 120 M0 150 L400 150 M50 0 L50 180 M100 0 L100 180 M150 0 L150 180 M200 0 L200 180 M250 0 L250 180 M300 0 L300 180 M350 0 L350 180" stroke="#334155" stroke-width="1"/>
-                        <ellipse cx="200" cy="120" rx="90" ry="30" fill="#020617" stroke="#64748b" stroke-width="4"/>
-                        <path d="M110 120 L20 100" stroke="#020617" stroke-width="12" stroke-linecap="round"/>
-                        <g transform="translate(180, 20) rotate(15)">
-                            <rect x="0" y="0" width="35" height="50" rx="4" fill="#cbd5e1" stroke="#0f172a" stroke-width="2"/>
-                            <rect x="7" y="10" width="4" height="30" rx="1" fill="#1e293b"/>
-                            <rect x="15" y="10" width="4" height="30" rx="1" fill="#1e293b"/>
-                            <rect x="23" y="10" width="4" height="30" rx="1" fill="#1e293b"/>
-                            <path d="M17 50 L17 110" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
-                            <rect x="12" y="70" width="10" height="35" rx="2" fill="#ef4444" stroke="#0f172a" stroke-width="1"/>
-                            <circle cx="10" cy="5" r="3" fill="#38bdf8"/>
-                            <circle cx="25" cy="5" r="3" fill="#38bdf8"/>
-                        </g>
-                    </svg>
-                `;
-            } else if (graphicType === 'cap-shield') {
-                return `
-                    <svg viewBox="0 0 400 180" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="400" height="180" fill="#1e1b4b"/>
-                        <circle cx="200" cy="90" r="75" fill="#b91c1c" stroke="#000" stroke-width="2"/>
-                        <circle cx="200" cy="90" r="60" fill="#cbd5e1" stroke="#000" stroke-width="2"/>
-                        <circle cx="200" cy="90" r="45" fill="#b91c1c" stroke="#000" stroke-width="2"/>
-                        <circle cx="200" cy="90" r="30" fill="#1e3a8a" stroke="#000" stroke-width="2"/>
-                        <path d="M200 70 L204 82 L216 82 L206 90 L210 102 L200 94 L190 102 L194 90 L184 82 L196 82 Z" fill="#ffffff"/>
-                        <ellipse cx="250" cy="70" rx="15" ry="5" fill="#000000" stroke="#fff" stroke-width="2"/>
-                        <g transform="translate(240, 25)">
-                            <rect x="0" y="10" width="20" height="25" rx="3" fill="#facc15" stroke="#000" stroke-width="2"/>
-                            <path d="M20 15 C 26 15, 26 30, 20 30" fill="none" stroke="#000" stroke-width="2"/>
-                            <path d="M5 5 Q 7 0 5 -5 M15 5 Q 17 0 15 -5" fill="none" stroke="#ffffff" stroke-width="1.5"/>
-                        </g>
-                    </svg>
-                `;
-            }
-            return "";
-        }
-
-        // Render articles to the grid
-        function renderGrid(list) {
-            const grid = document.getElementById('newspaper-grid');
-            const sidePanelTemplate = document.getElementById('side-panel-template');
-            
-            if (list.length === 0) {
-                grid.innerHTML = `
-                    <div style="grid-column: span 4; text-align: center; padding: 40px; border: 1px dashed var(--border-color)">
-                        <h3 style="color: var(--text-muted)">No articles match your search criteria.</h3>
-                        <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-muted)">Try adjusting your search terms or view the entire Multiverse.</p>
+                    <div class="article-meta">
+                        <span>${escHtml(a.author)} ✦ ${escHtml(a.date)}</span>
+                        <span class="read-more">Open Transmission →</span>
                     </div>
-                `;
-                return;
-            }
-
-            let html = "";
-            let nonHeroCount = 0;
-            let sidePanelInjected = false;
-            
-            // 1. Render Hero Article first (if it exists in the active search/list)
-            list.forEach(art => {
-                if (art.hero) {
-                    const graphicHtml = art.graphic ? `<div class="hero-graphic">${getGraphicSvg(art.graphic)}</div>` : "";
-                    html += `
-                        <article class="hero" onclick="openArticle(${art.id})">
-                            <div class="pow-badge">EXCLUSIVE!</div>
-                            <div>
-                                <span class="category">${art.category}</span>
-                                <h2 class="title">${art.title}</h2>
-                                ${graphicHtml}
-                                <p class="snippet">${getSnippet(art.content)}</p>
-                            </div>
-                            <div class="author-date">
-                                <span>By ${art.author}</span>
-                                <span>Read Full Story →</span>
-                            </div>
-                        </article>
-                    `;
-                }
-            });
-
-            // 2. Render all other non-hero articles
-            list.forEach(art => {
-                if (!art.hero) {
-                    const graphicHtml = art.graphic ? `<div class="article-graphic">${getGraphicSvg(art.graphic)}</div>` : "";
-                    html += `
-                        <article onclick="openArticle(${art.id})">
-                            <div>
-                                <span class="category">${art.category}</span>
-                                ${graphicHtml}
-                                <h3 class="title">${art.title}</h3>
-                                <p class="snippet">${getSnippet(art.content)}</p>
-                            </div>
-                            <div class="author-date">
-                                <span>By ${art.author}</span>
-                                <span>Read More →</span>
-                            </div>
-                        </article>
-                    `;
-                    
-                    nonHeroCount++;
-                    
-                    // Inject side widgets after exactly 3 non-hero articles (aesthetic placement)
-                    if (nonHeroCount === 3) {
-                        html += `<div class="side-panel">${sidePanelTemplate.innerHTML}</div>`;
-                        sidePanelInjected = true;
-                    }
-                }
-            });
-            
-            // If the side panel wasn't injected yet (due to filtered list being short), append it at the end
-            if (!sidePanelInjected) {
-                html += `<div class="side-panel">${sidePanelTemplate.innerHTML}</div>`;
-            }
-
-            grid.innerHTML = html;
-        }
-
-        // Helper to strip HTML tags and generate article snippet
-        function getSnippet(content) {
-            const temp = document.createElement('div');
-            temp.innerHTML = content;
-            const text = temp.textContent || temp.innerText || "";
-            return text.substring(0, 160) + (text.length > 160 ? "..." : "");
-        }
-
-        // Search Filter Handler
-        function handleSearch() {
-            const query = document.getElementById('search-input').value.toLowerCase().trim();
-            
-            if (query === "") {
-                renderGrid(allArticles);
-                return;
-            }
-
-            const filtered = allArticles.filter(art => {
-                return art.title.toLowerCase().includes(query) || 
-                       art.category.toLowerCase().includes(query) ||
-                       art.content.toLowerCase().includes(query) ||
-                       art.author.toLowerCase().includes(query);
-            });
-            
-            renderGrid(filtered);
-        }
-
-        // Theme Toggle Function
-        function toggleTheme() {
-            const body = document.body;
-            const currentTheme = body.getAttribute('data-theme');
-            const themeBtn = document.getElementById('theme-btn');
-            
-            if (currentTheme === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                themeBtn.textContent = 'Switch to Dark Ink';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                themeBtn.textContent = 'Switch to Light Ink';
-            }
-        }
-
-        // Modal Functions
-        function openArticle(id) {
-            const article = articles[id];
-            if (!article) return;
-
-            const modalContent = document.getElementById('modal-content');
-            modalContent.innerHTML = `
-                <span class="category">${article.category}</span>
-                <h2>${article.title}</h2>
-                <div class="meta">By ${article.author} ✦ ${article.date}</div>
-                <div class="story-body">
-                    ${article.content}
-                </div>
-            `;
-
-            document.getElementById('modal-overlay').classList.add('active');
-            document.body.style.overflow = 'hidden'; // prevent scrolling behind modal
-        }
-
-        // Close modal
-        function closeArticle() {
-            document.getElementById('modal-overlay').classList.remove('active');
-            document.body.style.overflow = ''; // restore scrolling
-        }
-
-        // Close modal on Esc key press
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeArticle();
+                </article>`;
             }
         });
 
-        // Initialize on page load
-        window.addEventListener('DOMContentLoaded', loadArticles);
+        // Non-hero articles
+        list.forEach(a => {
+            if (!a.hero) {
+                const graphic = a.graphic ? `<div class="article-graphic">${getGraphicSvg(a.graphic)}</div>` : '';
+                html += `
+                <article class="article-card" onclick="openArticle(${a.id})">
+                    <div>
+                        <div class="article-category">${escHtml(a.category)}</div>
+                        ${graphic}
+                        <h3 class="article-title">${escHtml(a.title)}</h3>
+                        <p class="article-snippet">${stripHtml(a.content).substring(0, 140)}${stripHtml(a.content).length > 140 ? '…' : ''}</p>
+                    </div>
+                    <div class="article-meta">
+                        <span>${escHtml(a.author)}</span>
+                        <span class="read-more">Open →</span>
+                    </div>
+                </article>`;
+
+                nonHeroCount++;
+                if (nonHeroCount === 3 && !sideInjected) {
+                    html += `<div class="side-panel">${tmpl.innerHTML}</div>`;
+                    sideInjected = true;
+                }
+            }
+        });
+
+        if (!sideInjected) {
+            html += `<div class="side-panel">${tmpl.innerHTML}</div>`;
+        }
+
+        grid.innerHTML = html;
+    }
+
+    /* ── Helpers ────────────────────────────── */
+    function stripHtml(html) {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText || '';
+    }
+
+    function escHtml(str) {
+        const tmp = document.createElement('div');
+        tmp.textContent = str;
+        return tmp.innerHTML;
+    }
+
+    /* ── Search ─────────────────────────────── */
+    function handleSearch() {
+        const q = document.getElementById('search-input').value.toLowerCase().trim();
+        if (!q) { renderGrid(allArticles); return; }
+        const filtered = allArticles.filter(a =>
+            a.title.toLowerCase().includes(q) ||
+            a.category.toLowerCase().includes(q) ||
+            stripHtml(a.content).toLowerCase().includes(q) ||
+            a.author.toLowerCase().includes(q)
+        );
+        renderGrid(filtered);
+    }
+
+    /* ── Theme Toggle ───────────────────────── */
+    function toggleTheme() {
+        const body = document.body;
+        const btn = document.getElementById('theme-btn');
+        if (body.getAttribute('data-theme') === 'holo-bright') {
+            body.setAttribute('data-theme', 'holonet');
+            btn.textContent = 'Bright Holo';
+        } else {
+            body.setAttribute('data-theme', 'holo-bright');
+            btn.textContent = 'Dark Holo';
+        }
+    }
+
+    /* ── Modal ──────────────────────────────── */
+    function openArticle(id) {
+        const a = articlesMap[id];
+        if (!a) return;
+        document.getElementById('modal-content').innerHTML = `
+            <div class="article-category">${escHtml(a.category)}</div>
+            <h2 class="article-title">${escHtml(a.title)}</h2>
+            <div class="modal-meta">${escHtml(a.author)} ✦ ${escHtml(a.date)} ✦ Coruscant Relay</div>
+            <div class="modal-body">${a.content}</div>
+        `;
+        document.getElementById('modal-overlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeArticle() {
+        document.getElementById('modal-overlay').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    window.addEventListener('keydown', e => { if (e.key === 'Escape') closeArticle(); });
+
+    /* ── Init ───────────────────────────────── */
+    window.addEventListener('DOMContentLoaded', loadArticles);
     </script>
 </body>
 </html>

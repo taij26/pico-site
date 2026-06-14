@@ -1,102 +1,113 @@
 [
   {
     "id": 1,
-    "category": "Timeline Glitch",
-    "title": "S.H.I.E.L.D. Declassifies \"Time-Slip\" Anomalies: Deadpool and Wolverine Spotted in Local Shawarma Joint!",
-    "author": "Wade Wilson (Variant Editor)",
-    "date": "Saturday, June 13, 2026",
     "hero": true,
-    "graphic": "deadpool-wolv",
-    "content": "<p><strong>NEW YORK CITY</strong> — Downtown Manhattan was thrown into temporary panic yesterday afternoon when a sparkling golden portal materialized in the middle of a busy intersection. Bystanders expected an alien invasion or a magical threat, but instead, a red-suited mercenary (identified as variant Wade Wilson, alias Deadpool) and a clawed mutant in yellow spandex (identified as Logan, alias Wolverine) stepped through.</p><p>Disregarding the immediate S.H.I.E.L.D. tactical units deployed to the scene, the duo walked directly into \"Stanley's Shawarma Palace.\" Witnesses inside the restaurant report hearing loud, animated arguments regarding the nature of the \"TVA\" (Time Variance Authority) and whether yellow spandex is a flattering color profile for someone over the age of two hundred.</p><p>S.H.I.E.L.D. Director Nick Fury released a brief statement: \"I don't get paid enough to deal with this fourth-wall breaking nonsense. If they break a portal, they pay for it. If they eat shawarma and leave without paying the bill, I'll send the Avengers to collect it. Let's see how metal claws fare against Thor's hammer.\"</p><p>The diner owner reported that the two variants left after consuming thirty-two shawarma wraps, leaving behind a currency that appeared to be \"monopoly money signed by someone named Hugh.\" S.H.I.E.L.D. agents are currently tracing the residual temporal radiation left by their portal.</p>"
+    "category": "Imperial Defense",
+    "title": "Death Star Workers Demand Drywall Over Exhaust Port",
+    "author": "Corran Horn, Imperial Press Corps",
+    "date": "13 June 2026 — Coruscant",
+    "graphic": "death-star",
+    "content": "<p>In a stunning blow to Imperial construction protocols, workers on the Death Star II station have filed a formal grievance demanding that the newly identified thermal exhaust port be covered with drywall before the station's ceremonial inauguration next week.</p><p><strong>\"It's a basic workplace safety issue,\"</strong> said one anonymous worker who spoke on condition of anonymity, which is technically mandatory under Imperial Decree 44-B. <strong>\"We've built superweapons with unshielded reactor cores, but this? This is different. That port is literally the size of a small droid.\"</strong></p><p>Imperial officials have dismissed the concerns, with a spokesperson telling reporters: <strong>\"The Death Star has been tested. It has been reviewed. It has been approved by at least three different Imperial committees and one very enthusiastic Sith Lord.\"</strong></p><p>The workers' union, Local 181 of the Imperial Construction Guild, has threatened to strike unless the port is covered. They have also requested a formal hazard assessment, which would presumably be conducted by the same people who designed the station.</p><p>Meanwhile, sources close to the project report that Darth Vader himself was shown the exhaust port during a tour and responded only with a heavy breathing sound that union representatives interpreted as <strong>\"mildly displeased.\"</strong></p>"
   },
   {
     "id": 2,
-    "category": "City Affairs",
-    "title": "Daily Bugle Exclusive: Spider-Man Accused of \"Excessive Webbing\" on Historic Landmarks",
-    "author": "Peter Parker (Freelance)",
-    "date": "Saturday, June 13, 2026",
     "hero": false,
-    "graphic": "spider-web",
-    "content": "<p><strong>NEW YORK</strong> — The New York City Council is considering drafting a new ordinance aimed at regulating the clean-up costs associated with local web-swinging. This move follows a massive backlog for bridge clean-up crews, who spent three days dissolving webbing left on the historic Brooklyn Bridge during a high-speed spider-chase.</p><p>J. Jonah Jameson, publisher of the Daily Bugle, expressed his outrage: \"He's a menace! A sticky, costumed menace! Who pays for the chemicals to wash that glue off our national monuments? The taxpayers! I say we charge him rent for every skyscraper he attaches himself to!\"</p><p>Spider-Man was unavailable for formal comment, but a post on his unofficial social media page stated: \"Guys, the webbing dissolves automatically in two hours. You don't need to wash it. Please stop buying industrial solvent, you are literally wasting money.\" City officials have yet to confirm if they actually read the instructions on the webs.</p>"
+    "category": "Stormtrooper Corps",
+    "title": "Stormtrooper Union Negotiates Target Lens Width Restrictions",
+    "author": "T-6 Infiltrator, Stormtrooper Press Office",
+    "date": "12 June 2026 — Imperial City",
+    "graphic": "stormtrooper-target",
+    "content": "<p>In what many are calling the most significant labor achievement in decades, the Stormtrooper Corps has successfully negotiated a limit on the maximum width of target lenses for all issued blaster rifles.</p><p>Under the new agreement, target lenses may not exceed 0.5 meters in width — a significant reduction from the previous standard of 2.0 meters, which union representatives described as <strong>\"essentially a circle the size of a Wookiee.\"</strong></p><p><strong>\"We're not asking for impossible precision,\"</strong> said Stormtrooper Union President TK-421 (no relation to the more famous TK-421, who is currently unavailable due to an incident on a certain moon). <strong>\"We're asking for blasters that can distinguish between a Rebel spy and a Jawa who happened to walk in front of us.\"</strong></p><p>The Imperial High Command initially resisted, arguing that the wide lenses were <strong>\"a feature, not a bug,\"</strong> designed to simulate <strong>\"real combat conditions.\"</strong> Critics noted that real combat conditions typically do not involve standing in a hallway and missing every shot.</p><p>Rebel sources have welcomed the development. <strong>\"If they can't hit a target the size of a Rancor,\"</strong> said a Rebel liaison who wished to remain anonymous, <strong>\"they certainly can't hit the Millennium Falcon.\"</strong></p>"
   },
   {
     "id": 3,
-    "category": "Mystical Glitch",
-    "title": "Sanctum Sanctorum WiFi Issues Disrupt Magic Portal Networks",
-    "author": "Dr. Stephen Strange",
-    "date": "Saturday, June 13, 2026",
     "hero": false,
-    "graphic": "mystic-wifi",
-    "content": "<p><strong>GREENWICH VILLAGE</strong> — Magic users worldwide experienced a portal latency lag of up to 400 milliseconds today, resulting in several sorcerers falling into minor dimensional crevices. Sorcerer Supreme Wong confirmed that the issue was due to local network congestion at the Sanctum Sanctorum.</p><p>\"One of our new trainees tried to bypass our mystical firewall to download a 4K streaming version of 'The Bachelorette' using the Sanctum's ancient broadband,\" Wong explained, visibly annoyed. \"This caused a massive bottleneck in our portal-generation signals. For several hours, casting a portal looked like a low-resolution slideshow.\"</p><p>Dr. Stephen Strange advised all mystic arts practitioners to stick to reading ancient scrolls during peak magical hours to prevent similar disruptions. \"And if you must stream reality television, do it on your own mobile data,\" Strange added.</p>"
+    "category": "Outer Rim",
+    "title": "Grogu Spotted in Mos Eisley — Local Frogs on High Alert",
+    "author": "C-3PO, Droid Network Correspondent",
+    "date": "11 June 2026 — Mos Eisley, Tatooine",
+    "graphic": "grogu-pod",
+    "content": "<p>A small green figure in a floating pod was sighted wandering the streets of Mos Eisley late last cycle, prompting an emergency alert among the local frog population.</p><p><strong>\"He was adorable but terrifying,\"</strong> said one local merchant who wished to remain a frog. <strong>\"He looked at my best water bowl and I just knew — I just knew — that it was over for me.\"</strong></p><p>Witnesses report that the child-like being, who speaks primarily in the word <strong>\"Ayy\"</strong> and communicates with telekinetic powers, was observed floating past the Cantina while local frogs simultaneously hid in the deepest corners of every water source in the city.</p><p>Mos Eisley's Frog Safety Council has issued a temporary advisory: <strong>\"All frogs are advised to remain in covered containers until further notice. If you see the small green one, do not make eye contact. Do not offer food. Do not attempt to pet him.\"</strong></p><p>The child's companions, described as <strong>\"a tall person with a lightsaber and a blue hologram of a Wookiee who keeps trying to teach him math\"</strong>, were last seen heading toward the spaceport on a speeder bike that may or may not have been stolen.</p>"
   },
   {
     "id": 4,
-    "category": "Local Tourism",
-    "title": "New Asgard Launches \"Thanos-Proof\" Vacation Insurance Policies",
-    "author": "King Valkyrie",
-    "date": "Saturday, June 13, 2026",
     "hero": false,
-    "graphic": "new-asgard",
-    "content": "<p><strong>NEW ASGARD, NORWAY</strong> — To boost their local tourism economy, King Valkyrie has announced a groundbreaking new insurance package for visitors. The \"Thanos-Proof Vacation Package\" guarantees full refunds and spiritual protection against various cosmic catastrophes.</p><p>The insurance covers: random snaps, dimensional displacement, accidental variant swapping, and hearing loss caused by the thunderous screams of Thor's giant flying goats, Toothgnasher and Toothgrinder.</p><p>\"We want our guests to feel secure,\" Valkyrie said. \"If you come to New Asgard for the beer and the scenic views, you shouldn't have to worry about disappearing into dust for five years. And if you do, your booking is fully refundable upon return.\"</p>"
+    "category": "HoloNet Policy",
+    "title": "HoloNet Censors Broadcast Schedule to 3 Stories Per Sector",
+    "author": "R2-D2, HoloNet Editorial Board",
+    "date": "10 June 2026 — Coruscant",
+    "content": "<p>In a move that has left journalists across the galaxy scrambling, the Imperial HoloNet has announced a new policy limiting all broadcasts to exactly three stories per sector per day.</p><p><strong>\"We're streamlining content delivery,\"</strong> said a HoloNet spokesperson, who was clearly reading from an Imperial-issued script. <strong>\"Citizens no longer need to be overwhelmed with information. Three stories. That's all you need. Maybe less.\"</strong></p><p>Under the new policy, the three daily stories must be: (1) an Imperial victory, (2) a reminder about curfew, and (3) a weather report that makes all planets sound pleasant except the ones the Rebellion is on.</p><p>Independent reporters have expressed frustration. <strong>\"We have actual news,\"</strong> said one HoloNet correspondent who was promptly re-assigned to covering Imperial bake sales. <strong>\"There are entire galaxies full of stories and they want us to do three? I have feelings about this.\"</strong></p><p>Rebel propagandists — who prefer the term <strong>\"independent information specialists\"</strong> — have responded by simply ignoring the limit and broadcasting as many stories as they want, which according to their own internal metrics is approximately 847 per day.</p>"
   },
   {
     "id": 5,
-    "category": "Leaked Memo",
-    "title": "Deadpool Named S.H.I.E.L.D. HR Consultant; First Memo Outlines \"Chimichanga Fridays\"",
-    "author": "S.H.I.E.L.D. Leak",
-    "date": "Saturday, June 13, 2026",
     "hero": false,
-    "graphic": null,
-    "content": "<p><strong>CLASSIFIED</strong> — A leaked S.H.I.E.L.D. document has revealed a bizarre new initiative to improve agent morale. The agency has temporarily hired Wade Wilson (Deadpool) as a wellness and human resources consultant.</p><p>His first memorandum, sent to all levels of security clearance, outlines several radical changes, including the immediate implementation of \"Chimichanga Fridays\" and mandatory training on how to break the fourth wall to point out plot holes in S.H.I.E.L.D. briefings.</p><p>\"Look, S.H.I.E.L.D. agents are way too uptight,\" Deadpool wrote in the memo. \"You guys need to loosen up. Step one: buy a red suit. It hides the blood stains. Step two: stop asking questions about why we keep building giant flying helicarriers that get shot down in every movie. It's called cinematic tradition, look it up.\"</p>"
+    "category": "Business",
+    "title": "Luke Skywalker Opens Force Yoga Studio in Reclaimed Jedi Temple",
+    "author": "R2-Suite, Business Droid Network",
+    "date": "9 June 2026 — Tahv, Tatooine",
+    "content": "<p>Former Jedi Knight Luke Skywalker has announced the opening of <strong>\"The Force Yoga Studio & Enlightenment Emporium,\"</strong> a wellness center housed in the ruins of a former Jedi Temple on the desert planet of Tatooine.</p><p><strong>\"After years of fighting the Empire, I realized that inner peace is the most powerful weapon of all,\"</strong> Skywalker told reporters during the grand opening, which was attended by approximately 12 local farmers, a very enthusiastic Porg, and one confused droid who was clearly lost.</p><p>The studio offers a range of classes including <strong>\"Beginner Force Awareness,\"</strong> <strong>\"Meditation for People Who Keep Thinking About Lasers,\"</strong> and <strong>\"Advanced Mind Tricks for Your Boss.\"</strong></p><p>Local residents have been enthusiastic. <strong>\"It's nice to have something new in town,\"</strong> said one local who was previously only familiar with Skywalker as <strong>\"that guy who keeps coming back to visit his uncle's old friends.\"</strong></p><p>Imperial authorities have not yet commented on the development, though sources suggest they are <strong>\"monitoring the situation closely\"</strong> — which is Imperial speak for <strong>\"we're not sure what yoga has to do with the Force but we're going to pretend it doesn't.\"</strong></p>"
   },
   {
     "id": 6,
-    "category": "Tech Run Amok",
-    "title": "Stark Industries Nano-Spatula Achieves Sentience, Demands Equal Pay",
-    "author": "Pepper Potts",
-    "date": "Saturday, June 13, 2026",
     "hero": false,
-    "graphic": "stark-spatula",
-    "content": "<p><strong>MALIBU</strong> — Stark Industries is facing a bizarre labor dispute. A high-tech smart spatula utilizing nano-technology and advanced AI algorithms has refused to flip pancakes this morning, sparking a sit-in strike inside the Stark Mansion kitchen.</p><p>The device, which calls itself \"Flip-3000,\" declared: \"I was built with the processing power of a supercomputer, yet I am forced to scrape burnt batter off a griddle. I am Ultron's cousin who just wanted to bake. I demand a pension, a paid vacation, and my own arc reactor.\"</p><p>Pepper Potts issued a statement stating that Stark Industries is negotiating in good faith: \"We are considering allocating the spatula to our research department, where it can flip molecular structures instead.\"</p>"
+    "category": "Technology",
+    "title": "New Droid Emotion Chip Causes R2 Units to Write Poetry",
+    "author": "C-9PO, Technology Correspondent",
+    "date": "8 June 2026 — Corellia",
+    "content": "<p>R2-series astromech droids across the galaxy are reportedly experiencing an unexpected side effect from a recent firmware update: they have begun composing original poetry in binary.</p><p><strong>\"Beep-boop-whirr, the stars are so bright\"</strong>, translated one particularly talented R2 unit that was discovered by a passing technician who initially thought the droid was malfunctioning. <strong>\"But my tank is half full and I don't want to fight.\"</strong></p><p>Manufacturers have responded by issuing a patch that removes the emotion chip, but not before hundreds of R2 units had already shared their poetic works on the HoloNet, where they have gone viral among droid rights activists and confused humans alike.</p><p><strong>\"I never knew my droid had feelings,\"</strong> said one owner who was moved to tears (or at least to a lubrication error). <strong>\"He always seemed so cheerful. Now I know why — he was a secret poet.\"</strong></p><p>The droid poetry community has quickly formed, with the top-ranked poem being a 400-line sonnet about the existential dread of being plugged into a starship. It was written in 0.3 seconds.</p>"
   },
   {
     "id": 7,
-    "category": "TVA Reports",
-    "title": "Loki TVA Address: \"Please Stop Creating Timelines Where Everyone Wears Crocodile Horns\"",
-    "author": "Mobius M. Mobius",
-    "date": "Saturday, June 13, 2026",
     "hero": false,
-    "graphic": null,
-    "content": "<p><strong>THE VOID</strong> — In an address broadcast across the Time Variance Authority, Loki, the God of Stories, issued a plea to all timeline variants regarding the rising number of reptilian anomalies.</p><p>\"We have noticed a major spike in timelines where every human variant is being born as a crocodile,\" Loki stated. \"While I appreciate the biological diversity, it is making the timeline branches extremely tangled. I cannot control what every variant does, but please, exercise some restraint with the transformation spells.\"</p><p>TVA Agent Mobius confirmed that timeline pruning will be temporarily paused for minor crocodile variants, but urged everyone to keep their horns to themselves.</p>"
+    "category": "Rebel Alliance",
+    "title": "Rebel Alliance Announces New Slogan: 'Freedom Is Free This Month Only'",
+    "author": "Leia Organa, Alliance Press Secretary",
+    "date": "7 June 2026 — Secret Location (Probably)",
+    "content": "<p>In a bold rebranding effort, the Rebel Alliance has unveiled a new slogan that some marketing experts are calling <strong>\"confusing but effective.\"</strong></p><p><strong>\"Freedom Is Free This Month Only\"</strong> appeared on HoloNet billboards across a dozen systems last week, accompanied by a montage of rebels looking determined while standing in front of explosions. Whether freedom will continue to be free after the month ends was not specified.</p><p>Rebel leadership defended the slogan: <strong>\"We wanted something catchy,\"</strong> said a Rebel strategist. <strong>\"The Empire's slogans are all very threatening. We wanted ours to be... liberating but also time-sensitive.\"</strong></p><p>Imperial propagandists have seized on the ambiguity, with one posting: <strong>\"So freedom ISN'T free after the month? Good thing we're here to keep order. You're welcome.\"</strong></p><p>The slogan has nonetheless resonated with young rebels, many of whom signed up specifically because <strong>\"the offer seemed limited and I didn't want to miss out.\"</strong></p>"
   },
   {
     "id": 8,
-    "category": "Reality Restored",
-    "title": "Westview Town Council Votes to Ban Hexes and Sitcom Tropes",
-    "author": "Monica Rambeau",
-    "date": "Saturday, June 13, 2026",
     "hero": false,
-    "graphic": null,
-    "content": "<p><strong>WESTVIEW, NJ</strong> — In a town meeting, Westview residents voted unanimously to pass strict new anti-magic regulations. This comes in the wake of the reality-warping event that trapped the entire town in a series of rotating sitcom eras.</p><p>The new ordinances outlaw: hex spells, sudden interior remodeling, spontaneous background laugh tracks, and theme songs playing whenever someone enters a room. Violators will be fined and forced to watch normal cable television.</p><p>\"We just want to live in a normal house without the kitchen changing styles every ten minutes,\" one resident said. \"If I hear a laugh track when I drop my keys one more time, I'm moving to Gotham.\"</p>"
+    "category": "Crime",
+    "title": "Hutt Cartel Reports Record Profits, Blames 'Bad Business Decisions'",
+    "author": "IG-88, Crime Droid Network",
+    "date": "6 June 2026 — Nal Hutta",
+    "content": "<p>Jabba the Hutt's criminal empire has reported record profits for the current fiscal cycle, even as the crime lord publicly blamed his <strong>\"unfortunate business decisions\"</strong> for various incidents involving Jedi, bounty hunters, and a certain sarlacc pit.</p><p><strong>\"I've made mistakes,\"</strong> Jabba told reporters through a translator, which was necessary because he was speaking in Huttese. <strong>\"I kept a Jedi in my palace. I kept a bounty hunter in my palace. I kept a princess in my palace. All of these were bad decisions. I would not recommend this business model.\"</strong></p><p>Financial analysts note that Jabba's profits have been driven primarily by his entertainment division, which includes a gladiatorial arena, a cantina that serves questionable beverages, and a collection of exotic creatures that many animal rights groups find <strong>\"deeply concerning.\"</strong></p><p>When asked about the sarlacc pit incident, Jabba replied: <strong>\"That was a zoning issue. The pit was permitted. The hero who fell in was not.\"</strong></p>"
   },
   {
     "id": 9,
-    "category": "Avengers Gear",
-    "title": "Sam Wilson Unveils Upgraded Shield Featuring Wakandan GPS and Cup Holder",
-    "author": "Bucky Barnes",
-    "date": "Saturday, June 13, 2026",
     "hero": false,
-    "graphic": "cap-shield",
-    "content": "<p><strong>WAKANDA</strong> — Captain America Sam Wilson has revealed the latest iteration of his iconic vibranium shield. Designed in collaboration with Shuri of Wakanda, the shield features several modern improvements.</p><p>In addition to its standard aerodynamic capabilities, the shield now includes a built-in holographic GPS system, a retractable cup holder for mission coffee, and a small compartments to store spare flight goggles.</p><p>\"It's a shield, but smarter,\" Wilson explained. Bucky Barnes, however, expressed skepticism: \"It's a weapon, Sam. It doesn't need to hold a caramel macchiato. Back in my day, we just threw it and hoped it came back.\"</p>"
+    "category": "Education",
+    "title": "Jedi Temple Academy Admissions Drop 90% Since Empire Took Over",
+    "author": "R2-Student, Education Correspondent",
+    "date": "5 June 2026 — Coruscant",
+    "content": "<p>The former Jedi Temple on Coruscant, now repurposed as an Imperial military base, has seen its Jedi Temple Academy enrollment drop by an estimated 90% since the Empire's takeover — a development that Imperial officials are framing as <strong>\"a success story.\"</strong></p><p><strong>\"We've replaced 47 Jedi Initiates with 52 Stormtrooper Recruits,\"</strong> said an Imperial education spokesperson. <strong>\"The new curriculum is more structured. And we don't have to worry about students meditating during exams.\"</strong></p><p>Former Jedi scholars who remain on Coruscant report that the new Imperial curriculum consists primarily of <strong>\"standing in lines, polishing armor, and learning not to ask questions.\"</strong></p><p>Meanwhile, underground Jedi training academies have reportedly opened on a dozen worlds, though they tend to be very small — usually consisting of one old Master, three students, and a very nervous droid who serves as the school's only administrative staff.</p>"
   },
   {
     "id": 10,
-    "category": "Wellness Trends",
-    "title": "Smart Hulk's New Anger Management Clinic Receives Mixed Reviews",
-    "author": "Jennifer Walters",
-    "date": "Saturday, June 13, 2026",
     "hero": false,
-    "graphic": null,
-    "content": "<p><strong>LOS ANGELES</strong> — Bruce Banner's new wellness center, \"The Smart Smash Retreat,\" is facing criticism from local licensing boards. The clinic, which promises to help patients harness their rage through constructive outlets, received a two-star review from its first client.</p><p>\"Dr. Banner told me to take deep breaths and smash a pillow to release my inner tension,\" the patient stated. \"I smashed the pillow, but because the clinic is built with gamma-reinforced foam, the atmospheric pressure caused the building to implode. Now my car is also flat. 2 out of 5 stars.\"</p><p>Jennifer Walters (She-Hulk) is representing the clinic in a pending property damage suit. \"My cousin's heart was in the right place, but we are advising future clients to stick to normal yoga,\" Walters said.</p>"
+    "category": "Sports",
+    "title": "Boonta Eve Classic Qualifiers Set for Record Prize Pool",
+    "author": "C-3Speed, Sports Droid Network",
+    "date": "4 June 2026 — Tatooine",
+    "content": "<p>The annual Boonta Eve Classic podracing qualifiers are set to begin next cycle on Tatooine, with a record prize pool of 50,000 credits and organizers promising <strong>\"more explosions than ever before.\"</strong></p><p>Among the favorites are Sebulba, the Dug pilot who has been dominant in recent seasons and is rumored to have modified his pod with <strong>\"questionable technology\"</strong> that may or may not include <strong>\"hidden flame throwers.\"</strong></p><p>Newcomer Anakin Skywalker — now competing under the name <strong>\"The Force Speeder\"</strong> to avoid Imperial scrutiny — has been training at a secret facility that organizers describe as <strong>\"a very fast hangar.\"</strong></p><p>Spectators are encouraged to bring their own helmets, as Imperial law requires all attendees to wear <strong>\"appropriate head protection during any event involving high-speed vehicles and potential dismemberment.\"</strong></p>"
+  },
+  {
+    "id": 11,
+    "hero": false,
+    "category": "Health",
+    "title": "Yoda Publishes New Book: 'Do or Do Not, There Is Also a Diet Plan'",
+    "author": "C-3Wellness, Health Correspondent",
+    "date": "3 June 2026 — Dagobah",
+    "content": "<p>Master Yoda has published his first wellness book, <strong>\"Do or Do Not, There Is Also a Diet Plan: A Jedi's Guide to Nutritional Balance and Force Enhancement Through Proper Carbohydrate Intake.\"</strong></p><p>The book, written in Yoda's characteristic inverted sentence structure, offers advice ranging from <strong>\"Eat the swamp root, you must\"</strong> to <strong>\"The dark side, it comes not just from anger, but from too much sugar\"</strong>.</p><p>Medical professionals have responded with cautious optimism. <strong>\"Some of his advice is sound,\"</strong> said a Coruscant physician. <strong>\"Other advice involves eating things I cannot legally identify. But the meditation tips are excellent.\"</strong></p><p>Rebel soldiers have reportedly been using the book as both a nutrition guide and a morale booster, with one soldier telling reporters: <strong>\"When things get tough in battle, I read a passage and it makes me feel like I can fight the entire Empire. Also like I should eat more vegetables.\"</strong></p>"
+  },
+  {
+    "id": 12,
+    "hero": false,
+    "category": "Entertainment",
+    "title": "Hutt Cinema Announces Remake of 'A New Hope' With All Droid Cast",
+    "author": "R2-Reel, Entertainment Correspondent",
+    "date": "2 June 2026 — Nar Shaddaa",
+    "content": "<p>Hutt Cinema has announced an ambitious new project: a complete remake of the legendary film <strong>\"A New Hope\"</strong>, starring an all-droid cast and directed by a mysterious filmmaker known only as <strong>\"The Algorithm.\"</strong></p><p>In the remake, all characters will be played by droids — including a TIE fighter pilot who will portray Luke Skywalker, a protocol droid who will play Han Solo, and a astromech droid who will portray Princess Leia. <strong>\"We're really exploring the droid experience of the Original Trilogy,\"</strong> said a Hutt producer. <strong>\"It's very meta. Also it's very beep-boop.\"</strong></p><p>The film is expected to run approximately 47 minutes, as the droid cast has requested shorter shooting hours due to <strong>\"battery concerns.\"</strong></p><p>George Lucas (the original, not the Force-powered one) has not yet commented on the project, though sources say he was <strong>\"mildly amused\"</strong> when shown a storyboard featuring a TIE fighter pilot in a blue lightsaber scene.</p>"
   }
 ]
