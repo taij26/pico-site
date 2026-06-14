@@ -310,27 +310,34 @@
             line-height: 1.6;
         }
 
-        /* Custom SVG Graphic Placeholder for Hero */
+        /* Custom SVG Graphics */
         .hero-graphic {
             width: 100%;
-            height: 200px;
+            height: 250px;
             background-color: var(--bg-color);
-            border: 2px solid var(--border-color);
+            border: 3px solid var(--ink-black);
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             position: relative;
+            border-radius: 4px;
+            box-shadow: 4px 4px 0px var(--border-color);
         }
 
-        .hero-graphic::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(var(--border-color) 20%, transparent 20%);
-            background-size: 10px 10px;
-            opacity: 0.25;
+        .article-graphic {
+            width: 100%;
+            height: 140px;
+            background-color: var(--bg-color);
+            border: 2px solid var(--border-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
 
         .comic-badge {
@@ -606,7 +613,57 @@
                     
                     <!-- Comic SVG style graphic -->
                     <div class="hero-graphic">
-                        <div class="comic-badge">DEADPOOL & WOLVERINE vs. THE BILL</div>
+                        <svg viewBox="0 0 800 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="deadpool-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#b91c1c"/>
+                                    <stop offset="100%" stop-color="#7f1d1d"/>
+                                </linearGradient>
+                                <linearGradient id="wolv-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#fbbf24"/>
+                                    <stop offset="100%" stop-color="#b45309"/>
+                                </linearGradient>
+                                <pattern id="halftone" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+                                    <circle cx="4" cy="4" r="2" fill="rgba(0,0,0,0.15)"/>
+                                </pattern>
+                            </defs>
+                            <!-- Background Split -->
+                            <rect x="0" y="0" width="400" height="300" fill="url(#deadpool-grad)"/>
+                            <rect x="400" y="0" width="400" height="300" fill="url(#wolv-grad)"/>
+                            
+                            <!-- Halftone overlays -->
+                            <rect x="0" y="0" width="800" height="300" fill="url(#halftone)"/>
+                            
+                            <!-- Diagonal Divider Line -->
+                            <line x1="400" y1="0" x2="400" y2="300" stroke="#000000" stroke-width="8"/>
+                            
+                            <!-- Deadpool Side Details -->
+                            <circle cx="200" cy="150" r="70" fill="#000000"/>
+                            <circle cx="200" cy="150" r="62" fill="#e23636"/>
+                            <rect x="188" y="80" width="24" height="140" fill="#000000"/>
+                            <ellipse cx="160" cy="150" rx="28" ry="32" fill="#000000"/>
+                            <ellipse cx="240" cy="150" rx="28" ry="32" fill="#000000"/>
+                            <!-- Eyes -->
+                            <path d="M150 145 L175 160 L170 140 Z" fill="#ffffff"/>
+                            <path d="M250 145 L225 160 L230 140 Z" fill="#ffffff"/>
+                            
+                            <!-- Wolverine Side Details -->
+                            <!-- Claw Slashes -->
+                            <path d="M500 50 L520 250" stroke="#1e3a8a" stroke-width="15" stroke-linecap="round"/>
+                            <path d="M540 40 L570 260" stroke="#1e3a8a" stroke-width="15" stroke-linecap="round"/>
+                            <path d="M580 50 L620 250" stroke="#1e3a8a" stroke-width="15" stroke-linecap="round"/>
+                            
+                            <path d="M500 50 L520 250" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+                            <path d="M540 40 L570 260" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+                            <path d="M580 50 L620 250" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+                            
+                            <!-- Speech bubbles -->
+                            <path d="M60 40 Q150 5 240 40 Q240 80 200 80 L210 105 L170 80 Q60 80 60 40 Z" fill="#ffffff" stroke="#000" stroke-width="3"/>
+                            <text x="150" y="47" font-family="'Impact', sans-serif" font-size="15" text-anchor="middle" fill="#000" font-weight="900">I CHOOSE SHAWARMA!</text>
+                            
+                            <path d="M540 210 Q620 170 720 210 Q720 250 680 250 L690 275 L650 250 Q540 250 540 210 Z" fill="#ffffff" stroke="#000" stroke-width="3"/>
+                            <text x="630" y="217" font-family="'Impact', sans-serif" font-size="16" text-anchor="middle" fill="#000" font-weight="900">SNIKT! WE SPLIT IT!</text>
+                        </svg>
                     </div>
 
                     <p class="snippet">
@@ -623,8 +680,38 @@
             <article onclick="openArticle(2)">
                 <div>
                     <span class="category">CITY AFFAIRS</span>
+                    <!-- Spider-Man Web SVG -->
+                    <div class="article-graphic">
+                        <svg viewBox="0 0 400 180" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="sky-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#1e1b4b"/>
+                                    <stop offset="100%" stop-color="#311042"/>
+                                </linearGradient>
+                                <pattern id="halftone2" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+                                    <circle cx="3" cy="3" r="1.5" fill="rgba(255,255,255,0.08)"/>
+                                </pattern>
+                            </defs>
+                            <rect width="400" height="180" fill="url(#sky-grad)"/>
+                            <rect width="400" height="180" fill="url(#halftone2)"/>
+                            <!-- Bridge towers silhouette -->
+                            <rect x="80" y="40" width="20" height="140" fill="#0c0a09"/>
+                            <rect x="140" y="40" width="20" height="140" fill="#0c0a09"/>
+                            <path d="M80 60 L140 60 M80 100 L140 100" stroke="#0c0a09" stroke-width="6"/>
+                            <path d="M10 80 Q110 40 210 80 Q310 40 390 80" fill="none" stroke="#0c0a09" stroke-width="4"/>
+                            
+                            <!-- Spider Web Overlay -->
+                            <path d="M200 90 L150 150 M200 90 L250 150 M200 90 L200 180 M200 90 L130 90 M200 90 L270 90 M200 90 L150 30 M200 90 L250 30 M200 90 L200 0" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+                            <path d="M170 110 A 50 50 0 0 1 230 110 M150 130 A 80 80 0 0 1 250 130 M185 70 A 30 30 0 0 1 215 70 M165 50 A 60 60 0 0 1 235 50" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+                            
+                            <!-- Big red spider symbol on the side -->
+                            <circle cx="340" cy="130" r="12" fill="#e23636"/>
+                            <rect x="337" y="112" width="6" height="30" rx="3" fill="#e23636"/>
+                            <path d="M340 125 Q360 110 370 120 M340 130 Q365 125 372 140 M340 135 Q360 145 365 160 M340 125 Q320 110 310 120 M340 130 Q315 125 308 140 M340 135 Q320 145 315 160" fill="none" stroke="#e23636" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
                     <h3 class="title">Daily Bugle Exclusive: Spider-Man Accused of "Excessive Webbing" on Historic Landmarks</h3>
-                    <p class="snippet">The New York City Council is drafting an ordinance to charge local wall-crawlers for the removal of sticky, synthetic web fibers left on bridges and skyscrapers. J. Jonah Jameson demands rent.</p>
+                    <p class="snippet">The New York City Council is drafting an ordinance to charge local wall-crawlers for the removal of webs left on the Brooklyn Bridge.</p>
                 </div>
                 <div class="author-date">
                     <span>By Peter Parker (Freelance)</span>
@@ -636,8 +723,37 @@
             <article onclick="openArticle(3)">
                 <div>
                     <span class="category">MYSTICAL GLITCH</span>
+                    <!-- Mystic Portal WiFi SVG -->
+                    <div class="article-graphic">
+                        <svg viewBox="0 0 400 180" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <radialGradient id="portal-grad" cx="50%" cy="50%" r="50%">
+                                    <stop offset="70%" stop-color="#f59e0b" stop-opacity="0.8"/>
+                                    <stop offset="90%" stop-color="#ea580c" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+                            <rect width="400" height="180" fill="#0f172a"/>
+                            <!-- Mystic grid -->
+                            <circle cx="200" cy="90" r="80" fill="none" stroke="rgba(245, 158, 11, 0.1)" stroke-width="1"/>
+                            <path d="M120 90 L280 90 M200 10 L200 170" stroke="rgba(245, 158, 11, 0.1)" stroke-width="1"/>
+                            
+                            <!-- Spark Portal -->
+                            <circle cx="200" cy="90" r="60" fill="none" stroke="url(#portal-grad)" stroke-width="12" stroke-dasharray="10 5 2 5"/>
+                            <circle cx="200" cy="90" r="64" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="5 15"/>
+                            
+                            <!-- WiFi Router in center -->
+                            <rect x="180" y="100" width="40" height="12" rx="2" fill="#e2e8f0" stroke="#000" stroke-width="2"/>
+                            <line x1="185" y1="100" x2="185" y2="70" stroke="#e2e8f0" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="215" y1="100" x2="215" y2="75" stroke="#e2e8f0" stroke-width="3" stroke-linecap="round"/>
+                            <!-- Wifi Waves out of portal -->
+                            <path d="M190 60 A 15 15 0 0 1 210 60" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M185 50 A 25 25 0 0 1 215 50" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M175 40 A 38 38 0 0 1 225 40" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
                     <h3 class="title">Sanctum Sanctorum WiFi Issues Disrupt Magic Portal Networks</h3>
-                    <p class="snippet">Sorcerer Supreme Wong confirmed that a portal lag of up to 400ms occurred today, blaming a Kamar-Taj trainee who tried to torrent a 4K version of "The Bachelorette" using mystical bandwidth.</p>
+                    <p class="snippet">Sorcerer Supreme Wong confirmed that a portal lag of up to 400ms occurred today, blaming a Kamar-Taj trainee's 4K video streams.</p>
                 </div>
                 <div class="author-date">
                     <span>By Dr. Stephen Strange</span>
@@ -649,8 +765,32 @@
             <article onclick="openArticle(4)">
                 <div>
                     <span class="category">LOCAL TOURISM</span>
+                    <!-- New Asgard Fjord SVG -->
+                    <div class="article-graphic">
+                        <svg viewBox="0 0 400 180" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#38bdf8"/>
+                                    <stop offset="60%" stop-color="#bae6fd"/>
+                                    <stop offset="100%" stop-color="#0284c7"/>
+                                </linearGradient>
+                            </defs>
+                            <rect width="400" height="180" fill="url(#sky2)"/>
+                            <!-- Fjord Mountains -->
+                            <path d="M0 140 L50 90 L120 120 L200 60 L280 130 L350 100 L400 140 Z" fill="#0f172a"/>
+                            <!-- Water -->
+                            <rect x="0" y="130" width="400" height="50" fill="#0369a1"/>
+                            <path d="M0 135 C 100 130, 200 140, 400 135" fill="none" stroke="#bae6fd" stroke-width="2"/>
+                            
+                            <!-- Asgard Shield/Banner floating -->
+                            <circle cx="330" cy="50" r="22" fill="#b91c1c" stroke="#fff" stroke-width="2"/>
+                            <circle cx="330" cy="50" r="16" fill="#0369a1" stroke="#fff" stroke-width="2"/>
+                            <!-- Thor Hammer silhouette -->
+                            <path d="M327 42 L333 42 L333 58 L327 58 Z M322 36 L338 36 L338 42 L322 42 Z" fill="#ffffff"/>
+                        </svg>
+                    </div>
                     <h3 class="title">New Asgard Launches "Thanos-Proof" Vacation Insurance Policies</h3>
-                    <p class="snippet">Valkyrie introduced new tourist packages featuring comprehensive protection against snaps, random dimensional shifting, and goat-induced hearing loss. Tourists are flocking to New Asgard.</p>
+                    <p class="snippet">Valkyrie introduced new tourist packages featuring comprehensive protection against snaps, random dimensional shifting, and goat screams.</p>
                 </div>
                 <div class="author-date">
                     <span>By King Valkyrie</span>
@@ -675,8 +815,36 @@
             <article onclick="openArticle(6)">
                 <div>
                     <span class="category">TECH RUN AMOK</span>
+                    <!-- Stark Spatula SVG -->
+                    <div class="article-graphic">
+                        <svg viewBox="0 0 400 180" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="180" fill="#1e293b"/>
+                            <!-- Grid pattern -->
+                            <path d="M0 30 L400 30 M0 60 L400 60 M0 90 L400 90 M0 120 L400 120 M0 150 L400 150 M50 0 L50 180 M100 0 L100 180 M150 0 L150 180 M200 0 L200 180 M250 0 L250 180 M300 0 L300 180 M350 0 L350 180" stroke="#334155" stroke-width="1"/>
+                            
+                            <!-- Frying Pan -->
+                            <ellipse cx="200" cy="120" rx="90" ry="30" fill="#020617" stroke="#64748b" stroke-width="4"/>
+                            <path d="M110 120 L20 100" stroke="#020617" stroke-width="12" stroke-linecap="round"/>
+                            
+                            <!-- Sentient Spatula -->
+                            <g transform="translate(180, 20) rotate(15)">
+                                <!-- Spatula Head -->
+                                <rect x="0" y="0" width="35" height="50" rx="4" fill="#cbd5e1" stroke="#0f172a" stroke-width="2"/>
+                                <!-- Slots -->
+                                <rect x="7" y="10" width="4" height="30" rx="1" fill="#1e293b"/>
+                                <rect x="15" y="10" width="4" height="30" rx="1" fill="#1e293b"/>
+                                <rect x="23" y="10" width="4" height="30" rx="1" fill="#1e293b"/>
+                                <!-- Spatula Handle -->
+                                <path d="M17 50 L17 110" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+                                <rect x="12" y="70" width="10" height="35" rx="2" fill="#ef4444" stroke="#0f172a" stroke-width="1"/>
+                                <!-- Sentient Glowing Eyes inside spatula head -->
+                                <circle cx="10" cy="5" r="3" fill="#38bdf8"/>
+                                <circle cx="25" cy="5" r="3" fill="#38bdf8"/>
+                            </g>
+                        </svg>
+                    </div>
                     <h3 class="title">Stark Industries Nano-Spatula Achieves Sentience, Demands Equal Pay</h3>
-                    <p class="snippet">A high-tech kitchen device utilizing Stark nano-technology has refused to flip pancakes this morning. The device claimed it is "Ultron's cousin who just wanted to bake" and demanded a pension.</p>
+                    <p class="snippet">A high-tech kitchen device utilizing Stark nano-technology has refused to flip pancakes this morning, claiming relation to Ultron.</p>
                 </div>
                 <div class="author-date">
                     <span>By Pepper Potts</span>
@@ -755,8 +923,33 @@
             <article onclick="openArticle(9)">
                 <div>
                     <span class="category">AVENGERS GEAR</span>
+                    <!-- Captain America Shield with Cup Holder SVG -->
+                    <div class="article-graphic">
+                        <svg viewBox="0 0 400 180" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="400" height="180" fill="#1e1b4b"/>
+                            
+                            <!-- Shield Background Grid -->
+                            <circle cx="200" cy="90" r="75" fill="#b91c1c" stroke="#000" stroke-width="2"/>
+                            <circle cx="200" cy="90" r="60" fill="#cbd5e1" stroke="#000" stroke-width="2"/>
+                            <circle cx="200" cy="90" r="45" fill="#b91c1c" stroke="#000" stroke-width="2"/>
+                            <circle cx="200" cy="90" r="30" fill="#1e3a8a" stroke="#000" stroke-width="2"/>
+                            
+                            <!-- Star in Center -->
+                            <path d="M200 70 L204 82 L216 82 L206 90 L210 102 L200 94 L190 102 L194 90 L184 82 L196 82 Z" fill="#ffffff"/>
+                            
+                            <!-- Cup Holder cutout and Coffee Mug on the side -->
+                            <ellipse cx="250" cy="70" rx="15" ry="5" fill="#000000" stroke="#fff" stroke-width="2"/>
+                            <!-- Mug -->
+                            <g transform="translate(240, 25)">
+                                <rect x="0" y="10" width="20" height="25" rx="3" fill="#facc15" stroke="#000" stroke-width="2"/>
+                                <path d="M20 15 C 26 15, 26 30, 20 30" fill="none" stroke="#000" stroke-width="2"/>
+                                <!-- Steam -->
+                                <path d="M5 5 Q 7 0 5 -5 M15 5 Q 17 0 15 -5" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                            </g>
+                        </svg>
+                    </div>
                     <h3 class="title">Sam Wilson Unveils Upgraded Shield Featuring Wakandan GPS and Cup Holder</h3>
-                    <p class="snippet">The newest Captain America shield has received a major technological upgrade. Designed in collaboration with Shuri of Wakanda, the shield now features built-in navigation and drink storage.</p>
+                    <p class="snippet">The newest Captain America shield has received a major technological upgrade, featuring a built-in cup holder and Wakandan mapping.</p>
                 </div>
                 <div class="author-date">
                     <span>By Bucky Barnes</span>
@@ -834,7 +1027,7 @@
                 author: "Dr. Stephen Strange",
                 date: "Saturday, June 13, 2026",
                 content: `
-                    <p><strong>GREENWICH VILLAGE</strong> — Magic users worldwide experienced a portal latency lag of up to 400 milliseconds today, resulting in several sorcerers falling into minor dimensional crevices. Sorcerer Supreme Wong confirmed that the issue was due to network congestion at the Sanctum Sanctorum.</p>
+                    <p><strong>GREENWICH VILLAGE</strong> — Magic users worldwide experienced a portal latency lag of up to 400 milliseconds today, resulting in several sorcerers falling into minor dimensional crevices. Sorcerer Supreme Wong confirmed that the issue was due to local network congestion at the Sanctum Sanctorum.</p>
                     
                     <p>"One of our new trainees tried to bypass our mystical firewall to download a 4K streaming version of 'The Bachelorette' using the Sanctum's ancient broadband," Wong explained, visibly annoyed. "This caused a massive bottleneck in our portal-generation signals. For several hours, casting a portal looked like a low-resolution slideshow."</p>
                     
