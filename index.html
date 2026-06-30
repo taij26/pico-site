@@ -1,54 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="holonet">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galactic Holonet News — The Voice of the Galaxy</title>
+    <title>Pico Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         /* ═══════════════════════════════════════════
-           GALACTIC HOLONET THEME — CSS VARIABLES
+           DARK THEME — CSS VARIABLES
            ═══════════════════════════════════════════ */
         :root {
-            --holo-blue: #4fc3f7;
-            --holo-cyan: #00e5ff;
-            --holo-glow: rgba(0, 229, 255, 0.15);
-            --holo-glow-strong: rgba(0, 229, 255, 0.35);
-            --holo-accent: #76ff03;
-            --holo-warn: #ff6e40;
-            --holo-red: #ff1744;
-            --holo-gold: #ffd740;
-            --holo-purple: #b388ff;
-            --bg-deep: #0a0e17;
-            --bg-panel: rgba(10, 18, 30, 0.85);
-            --bg-card: rgba(15, 25, 45, 0.9);
-            --border-holo: rgba(0, 229, 255, 0.25);
-            --border-dim: rgba(0, 229, 255, 0.1);
-            --text-primary: #e0f7fa;
-            --text-secondary: #80deea;
-            --text-muted: #4fc3f799;
-            --font-display: 'Orbitron', sans-serif;
-            --font-body: 'Rajdhani', sans-serif;
-            --font-mono: 'Share Tech Mono', monospace;
-            --transition: all 0.3s ease;
-        }
-
-        /* Light / Bright Holo variant */
-        [data-theme="holo-bright"] {
-            --holo-blue: #0277bd;
-            --holo-cyan: #0097a7;
-            --holo-glow: rgba(0, 151, 167, 0.1);
-            --holo-glow-strong: rgba(0, 151, 167, 0.25);
-            --bg-deep: #e8f0f8;
-            --bg-panel: rgba(232, 240, 248, 0.9);
-            --bg-card: rgba(255, 255, 255, 0.95);
-            --border-holo: rgba(0, 151, 167, 0.3);
-            --border-dim: rgba(0, 151, 167, 0.15);
-            --text-primary: #0a2e3f;
-            --text-secondary: #006064;
-            --text-muted: #00838f99;
+            --bg-primary: #0d0f13;
+            --bg-secondary: #14171e;
+            --bg-card: #181b24;
+            --bg-card-hover: #1e2230;
+            --border: #2a2e3a;
+            --border-light: #353a4a;
+            --text-primary: #e8eaed;
+            --text-secondary: #9aa0ab;
+            --text-muted: #5f6672;
+            --accent: #6c8cff;
+            --accent-dim: rgba(108, 140, 255, 0.12);
+            --accent-glow: rgba(108, 140, 255, 0.25);
+            --green: #34d399;
+            --green-dim: rgba(52, 211, 153, 0.12);
+            --orange: #f59e0b;
+            --orange-dim: rgba(245, 158, 11, 0.12);
+            --red: #ef4444;
+            --red-dim: rgba(239, 68, 68, 0.12);
+            --purple: #a78bfa;
+            --purple-dim: rgba(167, 139, 250, 0.12);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+            --shadow-lg: 0 4px 12px rgba(0,0,0,0.4);
+            --transition: 0.2s ease;
         }
 
         /* ═══════════════════════════════════════════
@@ -56,1358 +44,929 @@
            ═══════════════════════════════════════════ */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html { scroll-behavior: smooth; }
-
         body {
-            background-color: var(--bg-deep);
+            background: var(--bg-primary);
             color: var(--text-primary);
-            font-family: var(--font-body);
-            font-size: 16px;
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
             min-height: 100vh;
-            position: relative;
+            overflow-x: hidden;
         }
 
-        /* Animated starfield background */
+        /* Subtle background grain */
         body::before {
             content: '';
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            inset: 0;
             background:
-                radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6), transparent),
-                radial-gradient(1px 1px at 30% 65%, rgba(255,255,255,0.4), transparent),
-                radial-gradient(1.5px 1.5px at 55% 15%, rgba(255,255,255,0.7), transparent),
-                radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.5), transparent),
-                radial-gradient(1px 1px at 85% 40%, rgba(255,255,255,0.3), transparent),
-                radial-gradient(1.5px 1.5px at 15% 90%, rgba(255,255,255,0.6), transparent),
-                radial-gradient(1px 1px at 45% 50%, rgba(255,255,255,0.4), transparent),
-                radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.5), transparent),
-                radial-gradient(1.2px 1.2px at 60% 35%, rgba(255,255,255,0.6), transparent),
-                radial-gradient(1px 1px at 25% 75%, rgba(255,255,255,0.3), transparent),
-                radial-gradient(1px 1px at 75% 55%, rgba(255,255,255,0.5), transparent),
-                radial-gradient(1.5px 1.5px at 5% 45%, rgba(255,255,255,0.4), transparent),
-                radial-gradient(1px 1px at 95% 70%, rgba(255,255,255,0.6), transparent),
-                radial-gradient(1px 1px at 40% 25%, rgba(255,255,255,0.3), transparent),
-                radial-gradient(1px 1px at 65% 90%, rgba(255,255,255,0.5), transparent);
-            background-size: 200px 200px;
-            animation: star-drift 120s linear infinite;
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(108, 140, 255, 0.04) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(167, 139, 250, 0.03) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
         }
 
-        @keyframes star-drift {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-200px); }
-        }
-
-        /* Scanline overlay */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(0, 229, 255, 0.015) 2px,
-                rgba(0, 229, 255, 0.015) 4px
-            );
-            pointer-events: none;
-            z-index: 9999;
-        }
-
         /* ═══════════════════════════════════════════
-           TOP TRANSLUCENT NAV BAR
+           LAYOUT
            ═══════════════════════════════════════════ */
-        .holonet-nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: linear-gradient(180deg, rgba(10, 14, 23, 0.95) 0%, rgba(10, 14, 23, 0.8) 100%);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-holo);
-            padding: 0 20px;
+        .app {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 20px 40px;
         }
 
-        .nav-inner {
-            max-width: 1400px;
-            margin: 0 auto;
+        /* ── Header ── */
+        .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 56px;
-            gap: 16px;
+            margin-bottom: 28px;
             flex-wrap: wrap;
+            gap: 12px;
         }
 
-        .nav-brand {
-            font-family: var(--font-display);
-            font-size: 0.85rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--holo-cyan);
-            text-shadow: 0 0 10px var(--holo-glow-strong);
-            white-space: nowrap;
+        .header-left {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .nav-brand svg {
-            flex-shrink: 0;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 6px;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-muted);
-            text-decoration: none;
-            padding: 6px 14px;
-            border: 1px solid transparent;
-            border-radius: 3px;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--holo-cyan);
-            border-color: var(--border-holo);
-            background: var(--holo-glow);
-            text-shadow: 0 0 8px var(--holo-glow-strong);
-        }
-
-        .nav-controls {
+        .logo {
+            width: 36px;
+            height: 36px;
+            background: var(--accent);
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-
-        .nav-search {
-            background: rgba(0, 229, 255, 0.06);
-            border: 1px solid var(--border-dim);
-            color: var(--text-primary);
-            padding: 6px 14px;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            border-radius: 3px;
-            outline: none;
-            width: 200px;
-            transition: var(--transition);
-        }
-
-        .nav-search:focus {
-            border-color: var(--holo-cyan);
-            box-shadow: 0 0 12px var(--holo-glow);
-        }
-
-        .nav-search::placeholder {
-            color: var(--text-muted);
-        }
-
-        .holo-btn {
-            background: transparent;
-            border: 1px solid var(--border-holo);
-            color: var(--holo-cyan);
-            padding: 6px 14px;
-            font-family: var(--font-display);
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 3px;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-
-        .holo-btn:hover {
-            background: var(--holo-glow);
-            box-shadow: 0 0 15px var(--holo-glow);
-            border-color: var(--holo-cyan);
-        }
-
-        /* ═══════════════════════════════════════════
-           BREAKING TICKER
-           ═══════════════════════════════════════════ */
-        .ticker-wrap {
-            background: linear-gradient(90deg, rgba(255, 23, 68, 0.15), rgba(255, 110, 64, 0.1));
-            border-bottom: 1px solid rgba(255, 23, 68, 0.3);
-            padding: 8px 0;
-            overflow: hidden;
-            position: relative;
-            z-index: 50;
-        }
-
-        .ticker-label {
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            background: var(--holo-red);
-            color: #fff;
-            font-family: var(--font-display);
-            font-size: 0.6rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            padding: 0 14px;
-            z-index: 2;
-        }
-
-        .ticker-label::after {
-            content: '';
-            position: absolute;
-            right: -20px; top: 0; bottom: 0;
-            width: 20px;
-            background: linear-gradient(90deg, var(--holo-red), transparent);
-        }
-
-        .ticker {
-            display: inline-block;
-            white-space: nowrap;
-            padding-left: 120px;
-            animation: ticker-scroll 45s linear infinite;
-        }
-
-        .ticker-item {
-            display: inline-block;
-            padding: 0 50px;
-            font-family: var(--font-body);
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-
-        .ticker-item::before {
-            content: '▸';
-            color: var(--holo-red);
-            margin-right: 8px;
-        }
-
-        @keyframes ticker-scroll {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
-        }
-
-        /* ═══════════════════════════════════════════
-           HERO / MASTHEAD
-           ═══════════════════════════════════════════ */
-        .masthead-section {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding: 40px 20px 30px;
-        }
-
-        .holonet-logo {
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        .masthead-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 900;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            color: var(--holo-cyan);
-            text-shadow:
-                0 0 20px var(--holo-glow-strong),
-                0 0 40px var(--holo-glow),
-                0 0 80px rgba(0, 229, 255, 0.1);
-            line-height: 1.1;
-        }
-
-        .masthead-subtitle {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-top: 8px;
-        }
-
-        .masthead-meta {
-            display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 16px;
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            flex-wrap: wrap;
-        }
-
-        .masthead-meta span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .masthead-meta .live-dot {
-            width: 6px; height: 6px;
-            background: var(--holo-accent);
-            border-radius: 50%;
-            animation: live-pulse 1.5s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes live-pulse {
-            0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--holo-accent); }
-            50% { opacity: 0.4; box-shadow: none; }
-        }
-
-        /* ═══════════════════════════════════════════
-           MAIN GRID LAYOUT
-           ═══════════════════════════════════════════ */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px 60px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .holonet-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        @media (max-width: 1100px) {
-            .holonet-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 650px) {
-            .holonet-grid { grid-template-columns: 1fr; }
-        }
-
-        /* ═══════════════════════════════════════════
-           ARTICLE CARDS
-           ═══════════════════════════════════════════ */
-        .article-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-dim);
-            border-radius: 4px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            cursor: pointer;
-            transition: var(--transition);
-            overflow: hidden;
-        }
-
-        .article-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--holo-cyan), transparent);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .article-card:hover {
-            border-color: var(--border-holo);
-            box-shadow:
-                0 0 20px var(--holo-glow),
-                inset 0 0 30px var(--holo-glow);
-            transform: translateY(-3px);
-        }
-
-        .article-card:hover::before {
-            opacity: 1;
-        }
-
-        /* Corner accents */
-        .article-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 12px; height: 12px;
-            border-top: 2px solid var(--holo-cyan);
-            border-left: 2px solid var(--holo-cyan);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .article-card:hover::after {
-            opacity: 0.6;
-        }
-
-        .article-category {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
             font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--holo-cyan);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .article-category::before {
-            content: '';
-            width: 6px; height: 6px;
-            background: var(--holo-cyan);
-            display: inline-block;
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-        }
-
-        .article-title {
-            font-family: var(--font-display);
-            font-size: 1.05rem;
-            font-weight: 700;
-            line-height: 1.3;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-            transition: var(--transition);
-        }
-
-        .article-card:hover .article-title {
-            color: var(--holo-cyan);
-            text-shadow: 0 0 10px var(--holo-glow);
-        }
-
-        .article-graphic {
-            width: 100%;
-            height: 130px;
-            margin-bottom: 12px;
-            border-radius: 3px;
-            overflow: hidden;
-            border: 1px solid var(--border-dim);
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .article-graphic svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .article-snippet {
-            font-size: 0.85rem;
-            line-height: 1.5;
-            color: var(--text-muted);
-            margin-bottom: 14px;
-            flex-grow: 1;
-        }
-
-        .article-meta {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            border-top: 1px solid var(--border-dim);
-            padding-top: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .article-meta .read-more {
-            color: var(--holo-cyan);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: var(--transition);
-        }
-
-        .article-meta .read-more:hover {
-            text-shadow: 0 0 8px var(--holo-glow-strong);
-        }
-
-        /* ═══════════════════════════════════════════
-           HERO ARTICLE
-           ═══════════════════════════════════════════ */
-        .article-card.hero {
-            grid-column: span 2;
-            grid-row: span 2;
-            padding: 30px;
-            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 229, 255, 0.04) 100%);
-            border: 1px solid var(--border-holo);
-        }
-
-        @media (max-width: 1100px) {
-            .article-card.hero {
-                grid-column: span 2;
-                grid-row: span 1;
-            }
-        }
-
-        @media (max-width: 650px) {
-            .article-card.hero {
-                grid-column: span 1;
-            }
-        }
-
-        .article-card.hero .article-title {
-            font-size: 1.6rem;
-            margin-bottom: 14px;
-        }
-
-        .article-card.hero .article-graphic {
-            height: 260px;
-            margin-bottom: 18px;
-            border: 1px solid var(--border-holo);
-        }
-
-        .article-card.hero .article-snippet {
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .hero-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: var(--holo-red);
+            font-size: 18px;
             color: #fff;
-            font-family: var(--font-display);
-            font-size: 0.55rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 4px 10px;
-            border-radius: 2px;
-            z-index: 2;
+            box-shadow: 0 0 20px var(--accent-dim);
         }
 
-        /* ═══════════════════════════════════════════
-           SIDE PANEL / WIDGETS
-           ═══════════════════════════════════════════ */
-        .side-panel {
-            grid-column: span 1;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .header-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
         }
 
-        @media (max-width: 1100px) {
-            .side-panel { grid-column: span 2; }
+        .header-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.03em;
         }
 
-        @media (max-width: 650px) {
-            .side-panel { grid-column: span 1; }
-        }
-
-        .widget {
-            background: var(--bg-panel);
-            border: 1px solid var(--border-dim);
-            border-radius: 4px;
-            padding: 18px;
-            transition: var(--transition);
-        }
-
-        .widget:hover {
-            border-color: var(--border-holo);
-            box-shadow: 0 0 15px var(--holo-glow);
-        }
-
-        .widget-title {
-            font-family: var(--font-display);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--holo-cyan);
-            margin-bottom: 14px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-dim);
+        .header-right {
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .widget-title svg {
-            flex-shrink: 0;
-        }
-
-        /* Weather widget */
-        .holo-weather-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-            font-family: var(--font-body);
-            font-size: 0.8rem;
-            border-bottom: 1px solid var(--border-dim);
-        }
-
-        .holo-weather-row:last-child { border-bottom: none; }
-
-        .holo-weather-loc {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .holo-weather-cond {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            color: var(--text-muted);
-        }
-
-        .holo-weather-temp {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--holo-gold);
-        }
-
-        /* Imperial notices */
-        .notice-item {
-            padding: 10px 0;
-            border-bottom: 1px dashed var(--border-dim);
-            font-size: 0.8rem;
-            line-height: 1.4;
-        }
-
-        .notice-item:last-child { border-bottom: none; }
-
-        .notice-tag {
-            font-family: var(--font-mono);
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--holo-warn);
-            margin-bottom: 4px;
-        }
-
-        .notice-text {
+        .header-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
             color: var(--text-secondary);
+            padding: 6px 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
         }
 
-        /* Fleet tracker */
-        .fleet-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 0;
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
+        /* ── Grid ── */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
         }
 
-        .fleet-name { color: var(--text-secondary); }
-
-        .fleet-status {
-            padding: 2px 8px;
-            border-radius: 2px;
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        @media (max-width: 900px) {
+            .grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        .fleet-status.active {
-            background: rgba(118, 255, 3, 0.15);
-            color: var(--holo-accent);
-            border: 1px solid rgba(118, 255, 3, 0.3);
-        }
-
-        .fleet-status.patrol {
-            background: rgba(79, 195, 247, 0.15);
-            color: var(--holo-blue);
-            border: 1px solid rgba(79, 195, 247, 0.3);
-        }
-
-        .fleet-status.docked {
-            background: rgba(255, 255, 255, 0.08);
-            color: var(--text-muted);
-            border: 1px solid var(--border-dim);
+        @media (max-width: 550px) {
+            .grid { grid-template-columns: 1fr; }
         }
 
         /* ═══════════════════════════════════════════
-           MODAL / READER
+           CARD BASE
            ═══════════════════════════════════════════ */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(5, 8, 14, 0.92);
-            z-index: 200;
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: var(--border-light);
+            background: var(--bg-card-hover);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .card-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+        }
+
+        .card-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: var(--transition);
-            backdrop-filter: blur(8px);
-            padding: 20px;
+            font-size: 14px;
         }
 
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
+        /* ═══════════════════════════════════════════
+           CLOCK WIDGET (spans 2 cols)
+           ═══════════════════════════════════════════ */
+        .clock-card {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 32px 20px;
+            min-height: 200px;
         }
 
-        .modal-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-holo);
-            max-width: 750px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: 40px;
+        .clock-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            line-height: 1;
+            text-shadow: 0 0 40px var(--accent-dim);
+        }
+
+        .clock-seconds {
+            font-size: 0.4em;
+            color: var(--text-muted);
+            font-weight: 400;
+            vertical-align: super;
+            margin-left: 2px;
+        }
+
+        .clock-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            font-weight: 400;
+        }
+
+        .clock-timezone {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            letter-spacing: 0.05em;
+        }
+
+        /* Analog ring */
+        .clock-ring {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
             position: relative;
-            transform: translateY(20px) scale(0.98);
-            transition: var(--transition);
-            border-radius: 4px;
-            box-shadow:
-                0 0 40px var(--holo-glow),
-                0 0 80px rgba(0, 229, 255, 0.05);
         }
 
-        .modal-overlay.active .modal-card {
-            transform: translateY(0) scale(1);
+        .clock-ring svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
         }
 
-        .modal-close {
+        .clock-ring-bg {
+            fill: none;
+            stroke: var(--border);
+            stroke-width: 3;
+        }
+
+        .clock-ring-progress {
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 3;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 1s linear;
+            filter: drop-shadow(0 0 4px var(--accent-dim));
+        }
+
+        .clock-ring-center {
             position: absolute;
-            top: 16px;
-            right: 16px;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clock-ring-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        /* ═══════════════════════════════════════════
+           NOTES WIDGET
+           ═══════════════════════════════════════════ */
+        .notes-card {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .notes-card .card-header {
+            margin-bottom: 12px;
+        }
+
+        .notes-save-status {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .notes-save-status.saved {
+            color: var(--green);
+        }
+
+        .notes-textarea {
+            flex: 1;
+            min-height: 160px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 14px;
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            line-height: 1.7;
+            resize: none;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .notes-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-dim);
+        }
+
+        .notes-textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .notes-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .notes-char-count {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ═══════════════════════════════════════════
+           WEATHER WIDGET
+           ═══════════════════════════════════════════ */
+        .weather-card {
+            grid-column: span 1;
+        }
+
+        .weather-current {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .weather-icon {
+            font-size: 2.2rem;
+            line-height: 1;
+        }
+
+        .weather-temp {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.1;
+        }
+
+        .weather-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .weather-location {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .weather-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .weather-detail {
+            padding: 8px 10px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+
+        .weather-detail-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .weather-detail-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .weather-loading, .weather-error {
+            grid-column: span 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 160px;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .weather-error {
+            color: var(--orange);
+        }
+
+        /* ═══════════════════════════════════════════
+           CHECKLIST WIDGET
+           ═══════════════════════════════════════════ */
+        .checklist-card {
+            grid-column: span 1;
+        }
+
+        .checklist-input-row {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .checklist-input {
+            flex: 1;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .checklist-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-dim);
+        }
+
+        .checklist-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .checklist-add-btn {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .checklist-add-btn:hover {
+            filter: brightness(1.1);
+        }
+
+        .checklist-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            max-height: 240px;
+            overflow-y: auto;
+        }
+
+        .checklist-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .checklist-list::-webkit-scrollbar-track {
             background: transparent;
-            border: 1px solid var(--border-holo);
-            color: var(--holo-cyan);
-            font-size: 1.1rem;
-            width: 32px;
-            height: 32px;
+        }
+
+        .checklist-list::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .checklist-item:hover {
+            background: var(--bg-secondary);
+        }
+
+        .checklist-item.done .checklist-text {
+            text-decoration: line-through;
+            color: var(--text-muted);
+        }
+
+        .checklist-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--border-light);
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            border-radius: 3px;
             transition: var(--transition);
-            font-family: var(--font-display);
+            flex-shrink: 0;
         }
 
-        .modal-close:hover {
-            background: var(--holo-glow);
-            border-color: var(--holo-cyan);
+        .checklist-item.done .checklist-checkbox {
+            background: var(--green);
+            border-color: var(--green);
         }
 
-        .modal-card .article-category {
-            margin-bottom: 12px;
+        .checklist-checkbox svg {
+            opacity: 0;
+            transition: var(--transition);
         }
 
-        .modal-card .article-title {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
+        .checklist-item.done .checklist-checkbox svg {
+            opacity: 1;
         }
 
-        .modal-meta {
-            font-family: var(--font-mono);
+        .checklist-text {
+            flex: 1;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            word-break: break-word;
+        }
+
+        .checklist-delete {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: var(--transition);
+            opacity: 0;
+            font-size: 0.9rem;
+            line-height: 1;
+        }
+
+        .checklist-item:hover .checklist-delete {
+            opacity: 1;
+        }
+
+        .checklist-delete:hover {
+            color: var(--red);
+            background: var(--red-dim);
+        }
+
+        .checklist-empty {
+            text-align: center;
+            padding: 24px 10px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .checklist-progress {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-size: 0.7rem;
             color: var(--text-muted);
-            letter-spacing: 1px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border-dim);
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        .modal-body {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
+        .checklist-progress-bar {
+            flex: 1;
+            height: 3px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
         }
 
-        .modal-body p {
-            margin-bottom: 16px;
-        }
-
-        .modal-body strong {
-            color: var(--text-primary);
+        .checklist-progress-fill {
+            height: 100%;
+            background: var(--green);
+            border-radius: 3px;
+            transition: width 0.3s ease;
         }
 
         /* ═══════════════════════════════════════════
            FOOTER
            ═══════════════════════════════════════════ */
-        footer {
-            position: relative;
-            z-index: 10;
-            border-top: 1px solid var(--border-dim);
-            padding: 30px 20px;
+        .footer {
+            margin-top: 32px;
             text-align: center;
-            background: rgba(10, 14, 23, 0.6);
-        }
-
-        .footer-logo {
-            font-family: var(--font-display);
-            font-size: 1rem;
-            font-weight: 900;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--holo-cyan);
-            text-shadow: 0 0 10px var(--holo-glow);
-            margin-bottom: 8px;
-        }
-
-        .footer-text {
-            font-family: var(--font-mono);
             font-size: 0.7rem;
             color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-
-        /* ═══════════════════════════════════════════
-           LOADING STATE
-           ═══════════════════════════════════════════ */
-        .loading-state {
-            grid-column: span 4;
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .holo-spinner {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto 20px;
-            border: 2px solid var(--border-dim);
-            border-top-color: var(--holo-cyan);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            animation: blink-text 1.5s ease-in-out infinite;
-        }
-
-        @keyframes blink-text {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .error-state {
-            grid-column: span 4;
-            text-align: center;
-            padding: 40px;
-            border: 1px dashed var(--holo-red);
-            border-radius: 4px;
-            background: rgba(255, 23, 68, 0.05);
-        }
-
-        .error-state h3 {
-            font-family: var(--font-display);
-            font-size: 1rem;
-            color: var(--holo-red);
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-        }
-
-        .error-state p {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .no-results {
-            grid-column: span 4;
-            text-align: center;
-            padding: 40px;
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* ═══════════════════════════════════════════
-           RESPONSIVE
-           ═══════════════════════════════════════════ */
-        @media (max-width: 768px) {
-            .nav-inner { flex-direction: column; height: auto; padding: 12px 0; gap: 10px; }
-            .nav-links { justify-content: center; }
-            .nav-search { width: 100%; }
-            .masthead-section { padding: 24px 16px 20px; }
-            .modal-card { padding: 24px; }
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.03em;
         }
     </style>
 </head>
 <body>
-
-    <!-- ═══════════ NAVIGATION BAR ═══════════ -->
-    <nav class="holonet-nav">
-        <div class="nav-inner">
-            <div class="nav-brand">
-                <!-- Holonet logo SVG -->
-                <svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="14" cy="14" r="12" fill="none" stroke="var(--holo-cyan)" stroke-width="1.5"/>
-                    <circle cx="14" cy="14" r="8" fill="none" stroke="var(--holo-cyan)" stroke-width="1" opacity="0.6"/>
-                    <circle cx="14" cy="14" r="4" fill="none" stroke="var(--holo-cyan)" stroke-width="1" opacity="0.4"/>
-                    <circle cx="14" cy="14" r="2" fill="var(--holo-cyan)" opacity="0.8"/>
-                    <line x1="14" y1="0" x2="14" y2="28" stroke="var(--holo-cyan)" stroke-width="0.5" opacity="0.3"/>
-                    <line x1="0" y1="14" x2="28" y2="14" stroke="var(--holo-cyan)" stroke-width="0.5" opacity="0.3"/>
-                </svg>
-                Galactic Holonet
+    <div class="app">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <div class="logo">P</div>
+                <div>
+                    <div class="header-title">Pico Dashboard</div>
+                    <div class="header-subtitle">Personal command center</div>
+                </div>
             </div>
-            <ul class="nav-links">
-                <li><a href="#" class="active">HoloNet</a></li>
-                <li><a href="#">Imperial</a></li>
-                <li><a href="#">Rebel</a></li>
-                <li><a href="#">Outer Rim</a></li>
-                <li><a href="#">Droid Net</a></li>
-            </ul>
-            <div class="nav-controls">
-                <input type="text" id="search-input" class="nav-search" placeholder="Search the galaxy..." oninput="handleSearch()">
-                <button class="holo-btn" onclick="toggleTheme()" id="theme-btn">Bright Holo</button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- ═══════════ BREAKING TICKER ═══════════ -->
-    <div class="ticker-wrap">
-        <div class="ticker-label">⚡ Breaking</div>
-        <div class="ticker">
-            <span class="ticker-item">Death Star exhaust port now covered in drywall — Imperial workers cite "workplace safety concerns"</span>
-            <span class="ticker-item">Stormtrooper Union demands target lenses no wider than 0.5 meters</span>
-            <span class="ticker-item">Grogu spotted in Mos Eisley — local frogs on high alert</span>
-            <span class="ticker-item">HoloNet censors new broadcast schedule to 3 stories per sector per day</span>
-            <span class="ticker-item">Luke Skywalker opens Force Yoga studio in reclaimed Jedi Temple ruins</span>
-        </div>
-    </div>
-
-    <!-- ═══════════ MASTHEAD ═══════════ -->
-    <div class="masthead-section">
-        <!-- Large Holonet SVG -->
-        <div class="holonet-logo">
-            <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <radialGradient id="holo-glow-grad" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="var(--holo-cyan)" stop-opacity="0.3"/>
-                        <stop offset="60%" stop-color="var(--holo-cyan)" stop-opacity="0.1"/>
-                        <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
-                    </radialGradient>
-                </defs>
-                <circle cx="50" cy="50" r="48" fill="none" stroke="var(--holo-cyan)" stroke-width="1" opacity="0.3"/>
-                <circle cx="50" cy="50" r="40" fill="none" stroke="var(--holo-cyan)" stroke-width="0.8" opacity="0.4"/>
-                <circle cx="50" cy="50" r="32" fill="none" stroke="var(--holo-cyan)" stroke-width="0.6" opacity="0.5"/>
-                <circle cx="50" cy="50" r="24" fill="none" stroke="var(--holo-cyan)" stroke-width="0.5" opacity="0.6"/>
-                <circle cx="50" cy="50" r="16" fill="none" stroke="var(--holo-cyan)" stroke-width="0.8" opacity="0.7"/>
-                <circle cx="50" cy="50" r="8" fill="none" stroke="var(--holo-cyan)" stroke-width="1" opacity="0.8"/>
-                <circle cx="50" cy="50" r="3" fill="var(--holo-cyan)" opacity="0.9"/>
-                <circle cx="50" cy="50" r="48" fill="url(#holo-glow-grad)"/>
-                <line x1="50" y1="2" x2="50" y2="98" stroke="var(--holo-cyan)" stroke-width="0.3" opacity="0.2"/>
-                <line x1="2" y1="50" x2="98" y2="50" stroke="var(--holo-cyan)" stroke-width="0.3" opacity="0.2"/>
-                <line x1="16" y1="16" x2="84" y2="84" stroke="var(--holo-cyan)" stroke-width="0.2" opacity="0.15"/>
-                <line x1="84" y1="16" x2="16" y2="84" stroke="var(--holo-cyan)" stroke-width="0.2" opacity="0.15"/>
-                <!-- Orbiting dots -->
-                <circle cx="50" cy="2" r="2" fill="var(--holo-cyan)" opacity="0.8">
-                    <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="20s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="98" cy="50" r="1.5" fill="var(--holo-blue)" opacity="0.6">
-                    <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="-360 50 50" dur="30s" repeatCount="indefinite"/>
-                </circle>
-            </svg>
-        </div>
-        <h1 class="masthead-title">Galactic Holonet</h1>
-        <p class="masthead-subtitle">The Voice of the Galaxy Since 19 BBY</p>
-        <div class="masthead-meta">
-            <span><span class="live-dot"></span> LIVE FEED</span>
-            <span id="holo-date">Saturday, June 13, 2026</span>
-            <span>GALACTIC STANDARD TIME</span>
-            <span>CORUSCANT EDITION</span>
-        </div>
-    </div>
-
-    <!-- ═══════════ MAIN GRID ═══════════ -->
-    <div class="container">
-        <div class="holonet-grid" id="holonet-grid">
-            <div class="loading-state">
-                <div class="holo-spinner"></div>
-                <div class="loading-text">Transmitting HoloNet Feed…</div>
+            <div class="header-right">
+                <div class="header-date" id="header-date"></div>
             </div>
         </div>
 
-        <!-- Hidden template for side-panel widgets -->
-        <div style="display:none;">
-            <div class="side-panel" id="side-panel-template">
-
-                <!-- HoloNet Weather Widget -->
-                <div class="widget">
-                    <div class="widget-title">
-                        <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="7" cy="7" r="4" fill="none" stroke="var(--holo-gold)" stroke-width="1"/>
-                            <line x1="7" y1="0" x2="7" y2="2" stroke="var(--holo-gold)" stroke-width="1"/>
-                            <line x1="7" y1="12" x2="7" y2="14" stroke="var(--holo-gold)" stroke-width="1"/>
-                            <line x1="0" y1="7" x2="2" y2="7" stroke="var(--holo-gold)" stroke-width="1"/>
-                            <line x1="12" y1="7" x2="14" y2="7" stroke="var(--holo-gold)" stroke-width="1"/>
-                        </svg>
-                        Sector Weather
-                    </div>
-                    <div class="holo-weather-row">
-                        <span class="holo-weather-loc">Coruscant</span>
-                        <span class="holo-weather-cond">Urban / Smog</span>
-                        <span class="holo-weather-temp">22°C</span>
-                    </div>
-                    <div class="holo-weather-row">
-                        <span class="holo-weather-loc">Tatooine</span>
-                        <span class="holo-weather-cond">Dual Sunset</span>
-                        <span class="holo-weather-temp">48°C</span>
-                    </div>
-                    <div class="holo-weather-row">
-                        <span class="holo-weather-loc">Hoth</span>
-                        <span class="holo-weather-cond">Blizzard</span>
-                        <span class="holo-weather-temp">-42°C</span>
-                    </div>
-                    <div class="holo-weather-row">
-                        <span class="holo-weather-loc">Death Star</span>
-                        <span class="holo-weather-cond">Drywall Overcast</span>
-                        <span class="holo-weather-temp">18°C</span>
-                    </div>
-                    <div class="holo-weather-row">
-                        <span class="holo-weather-loc">Naboo</span>
-                        <span class="holo-weather-cond">Serene / Lakes</span>
-                        <span class="holo-weather-temp">26°C</span>
+        <!-- Grid -->
+        <div class="grid">
+            <!-- Clock -->
+            <div class="card clock-card">
+                <div class="clock-ring">
+                    <svg viewBox="0 0 120 120">
+                        <circle class="clock-ring-bg" cx="60" cy="60" r="54"/>
+                        <circle class="clock-ring-progress" id="clock-progress" cx="60" cy="60" r="54"
+                            stroke-dasharray="339.292"
+                            stroke-dashoffset="339.292"/>
+                    </svg>
+                    <div class="clock-ring-center">
+                        <div class="clock-ring-dot"></div>
                     </div>
                 </div>
+                <div class="clock-time" id="clock-time">00:00<span class="clock-seconds" id="clock-seconds">:00</span></div>
+                <div class="clock-date" id="clock-date"></div>
+                <div class="clock-timezone" id="clock-timezone"></div>
+            </div>
 
-                <!-- Imperial Notices -->
-                <div class="widget">
-                    <div class="widget-title">
-                        <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="2" y="2" width="10" height="10" rx="1" fill="none" stroke="var(--holo-warn)" stroke-width="1"/>
-                            <line x1="7" y1="5" x2="7" y2="8" stroke="var(--holo-warn)" stroke-width="1.5" stroke-linecap="round"/>
-                            <circle cx="7" cy="10" r="0.8" fill="var(--holo-warn)"/>
-                        </svg>
-                        Imperial Notices
+            <!-- Notes -->
+            <div class="card notes-card">
+                <div class="card-header">
+                    <span class="card-label">Quick Notes</span>
+                    <span class="notes-save-status" id="notes-status"></span>
+                </div>
+                <textarea class="notes-textarea" id="notes-textarea" placeholder="Type your notes here..."></textarea>
+                <div class="notes-footer">
+                    <span class="notes-char-count" id="notes-count">0 chars</span>
+                    <span id="notes-last-saved"></span>
+                </div>
+            </div>
+
+            <!-- Weather -->
+            <div class="card weather-card" id="weather-card">
+                <div class="card-header">
+                    <span class="card-label">Weather</span>
+                    <div class="card-icon" style="background: var(--orange-dim);">☀</div>
+                </div>
+                <div class="weather-loading" id="weather-loading">Loading weather…</div>
+                <div id="weather-content" style="display:none;">
+                    <div class="weather-current">
+                        <div class="weather-icon" id="weather-icon">☀️</div>
+                        <div>
+                            <div class="weather-temp" id="weather-temp">--°</div>
+                            <div class="weather-desc" id="weather-desc">Loading…</div>
+                            <div class="weather-location" id="weather-location"></div>
+                        </div>
                     </div>
-                    <div class="notice-item">
-                        <div class="notice-tag">Alert</div>
-                        <div class="notice-text">All citizens reminded to keep thermal exhaust ports covered at all times.</div>
-                    </div>
-                    <div class="notice-item">
-                        <div class="notice-tag">Curfew</div>
-                        <div class="notice-text">Mos Eisley spaceport curfew extended to 2200 hours. Jawas excepted.</div>
-                    </div>
-                    <div class="notice-item">
-                        <div class="notice-tag">Recruitment</div>
-                        <div class="notice-text">Stormtrooper Corps: 30% discount on target lenses for new recruits.</div>
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">Feels Like</div>
+                            <div class="weather-detail-value" id="weather-feels">--°</div>
+                        </div>
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">Humidity</div>
+                            <div class="weather-detail-value" id="weather-humidity">--%</div>
+                        </div>
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">Wind</div>
+                            <div class="weather-detail-value" id="weather-wind">-- km/h</div>
+                        </div>
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">Condition</div>
+                            <div class="weather-detail-value" id="weather-condition">--</div>
+                        </div>
                     </div>
                 </div>
+                <div class="weather-error" id="weather-error" style="display:none;">
+                    Unable to load weather. Please try again later.
+                </div>
+            </div>
 
-                <!-- Fleet Tracker -->
-                <div class="widget">
-                    <div class="widget-title">
-                        <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="7,1 13,13 1,13" fill="none" stroke="var(--holo-blue)" stroke-width="1"/>
-                        </svg>
-                        Fleet Status
-                    </div>
-                    <div class="fleet-row">
-                        <span class="fleet-name">Death Star II</span>
-                        <span class="fleet-status active">Active</span>
-                    </div>
-                    <div class="fleet-row">
-                        <span class="fleet-name">ISD Avenger</span>
-                        <span class="fleet-status patrol">Patrol</span>
-                    </div>
-                    <div class="fleet-row">
-                        <span class="fleet-name">ISD Executor</span>
-                        <span class="fleet-status docked">Docked</span>
-                    </div>
-                    <div class="fleet-row">
-                        <span class="fleet-name">TIE Fighter Wing 7</span>
-                        <span class="fleet-status active">Active</span>
+            <!-- Checklist -->
+            <div class="card checklist-card">
+                <div class="card-header">
+                    <span class="card-label">Checklist</span>
+                    <div class="card-icon" style="background: var(--purple-dim);">☑</div>
+                </div>
+                <div class="checklist-input-row">
+                    <input type="text" class="checklist-input" id="checklist-input" placeholder="Add a task…" maxlength="200">
+                    <button class="checklist-add-btn" id="checklist-add-btn">Add</button>
+                </div>
+                <ul class="checklist-list" id="checklist-list"></ul>
+                <div class="checklist-empty" id="checklist-empty">No tasks yet. Add one above!</div>
+                <div class="checklist-progress" id="checklist-progress" style="display:none;">
+                    <span id="checklist-progress-text">0 / 0</span>
+                    <div class="checklist-progress-bar">
+                        <div class="checklist-progress-fill" id="checklist-progress-fill" style="width:0%"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- ═══════════ MODAL ═══════════ -->
-    <div class="modal-overlay" id="modal-overlay" onclick="closeArticle()">
-        <div class="modal-card" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeArticle()">✕</button>
-            <div id="modal-content"></div>
+        <!-- Footer -->
+        <div class="footer">
+            Pico Dashboard — powered by PicoClaw 🦞
         </div>
     </div>
 
-    <!-- ═══════════ FOOTER ═══════════ -->
-    <footer>
-        <div class="footer-logo">Galactic Holonet</div>
-        <p class="footer-text">Transmitting across all sectors • Imperial-approved content feeds • Not liable for Force-related incidents</p>
-        <p class="footer-text" style="margin-top:6px;">© 2026 Galactic Holonet News Network. All rights reserved in this galaxy and adjacent ones.</p>
-    </footer>
-
-    <!-- ═══════════ JAVASCRIPT ═══════════ -->
     <script>
-    let allArticles = [];
-    let articlesMap = {};
+    // ═══════════════════════════════════════════
+    // CLOCK
+    // ═══════════════════════════════════════════
+    function updateClock() {
+        const now = new Date();
+        const h = String(now.getHours()).padStart(2, '0');
+        const m = String(now.getMinutes()).padStart(2, '0');
+        const s = String(now.getSeconds()).padStart(2, '0');
 
-    /* ── Fetch & Load ───────────────────────── */
-    async function loadArticles() {
+        document.getElementById('clock-time').innerHTML =
+            `${h}:${m}<span class="clock-seconds">:${s}</span>`;
+
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                        'July', 'August', 'September', 'October', 'November', 'December'];
+        const dateStr = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+        document.getElementById('clock-date').textContent = dateStr;
+        document.getElementById('header-date').textContent = dateStr;
+
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        document.getElementById('clock-timezone').textContent = tz;
+
+        // Progress ring — fraction of day elapsed
+        const totalSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+        const dayFraction = totalSeconds / 86400;
+        const circumference = 2 * Math.PI * 54; // ~339.292
+        const offset = circumference * (1 - dayFraction);
+        document.getElementById('clock-progress').style.strokeDashoffset = offset;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // ═══════════════════════════════════════════
+    // NOTES
+    // ═══════════════════════════════════════════
+    const notesTextarea = document.getElementById('notes-textarea');
+    const notesStatus = document.getElementById('notes-status');
+    const notesCount = document.getElementById('notes-count');
+    const notesLastSaved = document.getElementById('notes-last-saved');
+
+    // Load saved notes
+    const savedNotes = localStorage.getItem('pico-notes');
+    if (savedNotes) {
+        notesTextarea.value = savedNotes;
+        updateNotesCount();
+    }
+
+    let notesTimeout;
+    notesTextarea.addEventListener('input', () => {
+        updateNotesCount();
+        notesStatus.textContent = 'Unsaved';
+        notesStatus.className = 'notes-save-status';
+        notesLastSaved.textContent = '';
+
+        clearTimeout(notesTimeout);
+        notesTimeout = setTimeout(() => {
+            localStorage.setItem('pico-notes', notesTextarea.value);
+            notesStatus.textContent = 'Saved';
+            notesStatus.className = 'notes-save-status saved';
+            notesLastSaved.textContent = `Last saved: ${new Date().toLocaleTimeString()}`;
+        }, 800);
+    });
+
+    function updateNotesCount() {
+        notesCount.textContent = `${notesTextarea.value.length} chars`;
+    }
+
+    // ═══════════════════════════════════════════
+    // WEATHER (Open-Meteo, no API key needed)
+    // ═══════════════════════════════════════════
+    const weatherCodeDescriptions = {
+        0: 'Clear sky', 1: 'Mainly clear', 2: 'Partly cloudy', 3: 'Overcast',
+        45: 'Foggy', 48: 'Rime fog',
+        51: 'Light drizzle', 53: 'Drizzle', 55: 'Heavy drizzle',
+        61: 'Light rain', 63: 'Rain', 65: 'Heavy rain',
+        71: 'Light snow', 73: 'Snow', 75: 'Heavy snow',
+        80: 'Rain showers', 81: 'Moderate showers', 82: 'Heavy showers',
+        95: 'Thunderstorm', 96: 'Thunderstorm with hail', 99: 'Severe thunderstorm'
+    };
+
+    const weatherIcons = {
+        0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️',
+        45: '🌫️', 48: '🌫️',
+        51: '🌦️', 53: '🌦️', 55: '🌧️',
+        61: '🌧️', 63: '🌧️', 65: '🌧️',
+        71: '🌨️', 73: '🌨️', 75: '❄️',
+        80: '🌦️', 81: '🌧️', 82: '🌧️',
+        95: '⛈️', 96: '⛈️', 99: '⛈️'
+    };
+
+    async function loadWeather() {
+        const loadingEl = document.getElementById('weather-loading');
+        const contentEl = document.getElementById('weather-content');
+        const errorEl = document.getElementById('weather-error');
+
         try {
-            const res = await fetch('articles.json');
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            allArticles = await res.json();
-            allArticles.forEach(a => { articlesMap[a.id] = a; });
-            renderGrid(allArticles);
+            // Try to get geolocation
+            let lat, lon, city;
+
+            if (navigator.geolocation) {
+                const pos = await new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5000 });
+                });
+                lat = pos.coords.latitude;
+                lon = pos.coords.longitude;
+                city = 'Your location';
+            } else {
+                // Default to a common location if no geolocation
+                lat = 43.6532; // Toronto
+                lon = -79.3832;
+                city = 'Toronto';
+            }
+
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&timezone=auto`;
+            const res = await fetch(url);
+            if (!res.ok) throw new Error('API error');
+            const data = await res.json();
+            const c = data.current;
+
+            const code = c.weather_code;
+            document.getElementById('weather-icon').textContent = weatherIcons[code] || '🌡️';
+            document.getElementById('weather-temp').textContent = `${Math.round(c.temperature_2m)}°C`;
+            document.getElementById('weather-desc').textContent = weatherCodeDescriptions[code] || 'Unknown';
+            document.getElementById('weather-location').textContent = city;
+            document.getElementById('weather-feels').textContent = `${Math.round(c.apparent_temperature)}°C`;
+            document.getElementById('weather-humidity').textContent = `${c.relative_humidity_2m}%`;
+            document.getElementById('weather-wind').textContent = `${c.wind_speed_10m} km/h`;
+            document.getElementById('weather-condition').textContent = weatherCodeDescriptions[code] || '--';
+
+            loadingEl.style.display = 'none';
+            contentEl.style.display = 'block';
         } catch (err) {
-            console.error('HoloNet feed error:', err);
-            document.getElementById('holonet-grid').innerHTML = `
-                <div class="error-state">
-                    <h3>⚠ Feed Interrupted</h3>
-                    <p>Failed to fetch articles.json. The HoloNet relay may be down. Check your connection to the nearest Imperial relay station.</p>
-                </div>`;
+            console.error('Weather load error:', err);
+            loadingEl.style.display = 'none';
+            errorEl.style.display = 'flex';
         }
     }
 
-    /* ── SVG Graphics ───────────────────────── */
-    function getGraphicSvg(type) {
-        if (!type) return '';
+    loadWeather();
 
-        if (type === 'death-star') {
-            return `<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="ds-bg" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#0a0e17"/>
-                        <stop offset="100%" stop-color="#1a1040"/>
-                    </linearGradient>
-                    <radialGradient id="ds-glow" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="var(--holo-cyan)" stop-opacity="0.4"/>
-                        <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
-                    </radialGradient>
-                </defs>
-                <rect width="400" height="180" fill="url(#ds-bg)"/>
-                <!-- Stars -->
-                <circle cx="40" cy="20" r="1" fill="#fff" opacity="0.5"/>
-                <circle cx="120" cy="50" r="0.8" fill="#fff" opacity="0.3"/>
-                <circle cx="300" cy="15" r="1.2" fill="#fff" opacity="0.4"/>
-                <circle cx="360" cy="100" r="0.7" fill="#fff" opacity="0.5"/>
-                <circle cx="80" cy="140" r="1" fill="#fff" opacity="0.3"/>
-                <!-- Death Star body -->
-                <circle cx="200" cy="90" r="60" fill="#1a2332" stroke="var(--holo-cyan)" stroke-width="1" opacity="0.9"/>
-                <circle cx="200" cy="90" r="58" fill="#151d2b"/>
-                <!-- Superlaser dish -->
-                <circle cx="200" cy="90" r="22" fill="#0d1320" stroke="var(--holo-cyan)" stroke-width="0.8" opacity="0.7"/>
-                <circle cx="200" cy="90" r="14" fill="#0a0e17" stroke="var(--holo-cyan)" stroke-width="0.5" opacity="0.5"/>
-                <circle cx="200" cy="90" r="6" fill="var(--holo-cyan)" opacity="0.3"/>
-                <!-- Grid lines on surface -->
-                <ellipse cx="200" cy="90" rx="58" ry="20" fill="none" stroke="var(--holo-cyan)" stroke-width="0.3" opacity="0.3"/>
-                <ellipse cx="200" cy="90" rx="58" ry="40" fill="none" stroke="var(--holo-cyan)" stroke-width="0.3" opacity="0.2"/>
-                <line x1="142" y1="90" x2="258" y2="90" stroke="var(--holo-cyan)" stroke-width="0.3" opacity="0.3"/>
-                <line x1="200" y1="30" x2="200" y2="150" stroke="var(--holo-cyan)" stroke-width="0.3" opacity="0.3"/>
-                <!-- Exhaust port highlight -->
-                <circle cx="200" cy="90" r="3" fill="var(--holo-red)" opacity="0.8">
-                    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
-                </circle>
-                <!-- Drywall label -->
-                <rect x="175" y="155" width="50" height="12" rx="1" fill="rgba(255,255,255,0.1)" stroke="var(--holo-warn)" stroke-width="0.5"/>
-                <text x="200" y="164" text-anchor="middle" font-family="monospace" font-size="6" fill="var(--holo-warn)">DRYWALL</text>
-                <!-- Glow effect -->
-                <circle cx="200" cy="90" r="60" fill="url(#ds-glow)"/>
-            </svg>`;
-        }
+    // ═══════════════════════════════════════════
+    // CHECKLIST
+    // ═══════════════════════════════════════════
+    const checklistInput = document.getElementById('checklist-input');
+    const checklistAddBtn = document.getElementById('checklist-add-btn');
+    const checklistList = document.getElementById('checklist-list');
+    const checklistEmpty = document.getElementById('checklist-empty');
+    const checklistProgress = document.getElementById('checklist-progress');
+    const checklistProgressText = document.getElementById('checklist-progress-text');
+    const checklistProgressFill = document.getElementById('checklist-progress-fill');
 
-        if (type === 'stormtrooper-target') {
-            return `<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="st-bg" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#0a0e17"/>
-                        <stop offset="100%" stop-color="#0d1520"/>
-                    </linearGradient>
-                </defs>
-                <rect width="400" height="180" fill="url(#st-bg)"/>
-                <!-- Training range background -->
-                <rect x="0" y="120" width="400" height="60" fill="#0a0e17" opacity="0.5"/>
-                <line x1="0" y1="120" x2="400" y2="120" stroke="var(--holo-cyan)" stroke-width="0.5" opacity="0.2"/>
-                <!-- Target stand -->
-                <rect x="170" y="50" width="60" height="80" rx="2" fill="#111827" stroke="var(--holo-cyan)" stroke-width="0.8" opacity="0.7"/>
-                <!-- Target rings -->
-                <circle cx="200" cy="90" r="30" fill="none" stroke="var(--holo-red)" stroke-width="1" opacity="0.6"/>
-                <circle cx="200" cy="90" r="22" fill="none" stroke="var(--holo-red)" stroke-width="1" opacity="0.5"/>
-                <circle cx="200" cy="90" r="14" fill="none" stroke="#fff" stroke-width="1" opacity="0.4"/>
-                <circle cx="200" cy="90" r="6" fill="var(--holo-red)" opacity="0.3"/>
-                <!-- Stormtrooper silhouette (left side) -->
-                <g transform="translate(60, 40)" opacity="0.6">
-                    <!-- Helmet -->
-                    <ellipse cx="25" cy="20" rx="14" ry="16" fill="#e0e0e0" stroke="#999" stroke-width="0.5"/>
-                    <!-- Visor -->
-                    <path d="M15 16 Q25 12 35 16 L33 24 Q25 28 17 24 Z" fill="#111"/>
-                    <!-- Body -->
-                    <rect x="12" y="36" width="26" height="40" rx="4" fill="#e0e0e0" stroke="#999" stroke-width="0.5"/>
-                    <!-- Blaster -->
-                    <rect x="35" y="42" width="20" height="5" rx="1" fill="#888"/>
-                    <rect x="50" y="40" width="6" height="9" rx="1" fill="#666"/>
-                </g>
-                <!-- Miss indicators -->
-                <text x="280" y="60" font-family="monospace" font-size="8" fill="var(--holo-warn)" opacity="0.6">MISS</text>
-                <text x="280" y="75" font-family="monospace" font-size="8" fill="var(--holo-warn)" opacity="0.5">MISS</text>
-                <text x="280" y="90" font-family="monospace" font-size="8" fill="var(--holo-warn)" opacity="0.4">MISS</text>
-                <text x="280" y="105" font-family="monospace" font-size="8" fill="var(--holo-warn)" opacity="0.3">MISS</text>
-                <!-- Laser bolt trails -->
-                <line x1="100" y1="85" x2="175" y2="85" stroke="var(--holo-red)" stroke-width="1" opacity="0.3" stroke-dasharray="4 4">
-                    <animate attributeName="stroke-dashoffset" values="0;-8" dur="0.5s" repeatCount="indefinite"/>
-                </line>
-                <line x1="100" y1="75" x2="175" y2="75" stroke="var(--holo-red)" stroke-width="1" opacity="0.2" stroke-dasharray="4 4">
-                    <animate attributeName="stroke-dashoffset" values="0;-8" dur="0.7s" repeatCount="indefinite"/>
-                </line>
-                <line x1="100" y1="95" x2="175" y2="95" stroke="var(--holo-red)" stroke-width="1" opacity="0.25" stroke-dasharray="4 4">
-                    <animate attributeName="stroke-dashoffset" values="0;-8" dur="0.6s" repeatCount="indefinite"/>
-                </line>
-            </svg>`;
-        }
+    let tasks = JSON.parse(localStorage.getItem('pico-tasks') || '[]');
 
-        if (type === 'grogu-pod') {
-            return `<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="gt-bg" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#1a1008"/>
-                        <stop offset="100%" stop-color="#0a0e17"/>
-                    </linearGradient>
-                    <radialGradient id="pod-glow" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="var(--holo-cyan)" stop-opacity="0.25"/>
-                        <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
-                    </radialGradient>
-                </defs>
-                <rect width="400" height="180" fill="url(#gt-bg)"/>
-                <!-- Desert ground -->
-                <path d="M0 140 Q100 130 200 138 Q300 146 400 135 L400 180 L0 180 Z" fill="#1a1510" opacity="0.8"/>
-                <!-- Sand dunes -->
-                <path d="M0 150 Q80 140 160 148 Q240 156 320 145 L400 152 L400 180 L0 180 Z" fill="#151008" opacity="0.6"/>
-                <!-- Floating pod -->
-                <ellipse cx="200" cy="80" rx="45" ry="35" fill="rgba(180,180,200,0.08)" stroke="var(--holo-cyan)" stroke-width="1" opacity="0.6"/>
-                <ellipse cx="200" cy="80" rx="40" ry="30" fill="rgba(200,200,220,0.05)" stroke="var(--holo-cyan)" stroke-width="0.5" opacity="0.4"/>
-                <!-- Grogu (Baby Yoda) silhouette -->
-                <g transform="translate(200, 80)">
-                    <!-- Head -->
-                    <circle cx="0" cy="-8" r="16" fill="#4a7a3a" opacity="0.8"/>
-                    <!-- Ears -->
-                    <ellipse cx="-14" cy="-22" rx="5" ry="12" fill="#4a7a3a" opacity="0.8" transform="rotate(-15, -14, -22)"/>
-                    <ellipse cx="14" cy="-22" rx="5" ry="12" fill="#4a7a3a" opacity="0.8" transform="rotate(15, 14, -22)"/>
-                    <!-- Eyes -->
-                    <circle cx="-5" cy="-10" r="3" fill="#1a3a1a"/>
-                    <circle cx="5" cy="-10" r="3" fill="#1a3a1a"/>
-                    <circle cx="-4" cy="-11" r="1" fill="#fff" opacity="0.8"/>
-                    <circle cx="6" cy="-11" r="1" fill="#fff" opacity="0.8"/>
-                    <!-- Mouth -->
-                    <path d="M-3 0 Q0 3 3 0" fill="none" stroke="#2a5a2a" stroke-width="1"/>
-                    <!-- Body -->
-                    <rect x="-10" y="8" width="20" height="18" rx="6" fill="#4a7a3a" opacity="0.7"/>
-                </g>
-                <!-- Force pinch spark -->
-                <circle cx="250" cy="60" r="2" fill="var(--holo-cyan)" opacity="0.8">
-                    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1s" repeatCount="indefinite"/>
-                </circle>
-                <line x1="230" y1="70" x2="248" y2="62" stroke="var(--holo-cyan)" stroke-width="0.8" opacity="0.5"/>
-                <line x1="235" y1="75" x2="246" y2="64" stroke="var(--holo-cyan)" stroke-width="0.5" opacity="0.3"/>
-                <!-- Frog silhouette (being taken) -->
-                <ellipse cx="270" cy="55" rx="6" ry="4" fill="#2a6a2a" opacity="0.4"/>
-                <circle cx="273" cy="53" r="1.5" fill="#1a4a1a" opacity="0.5"/>
-                <!-- "AYY" text -->
-                <text x="160" y="30" font-family="monospace" font-size="10" fill="var(--holo-cyan)" opacity="0.5">AYY</text>
-                <text x="160" y="30" font-family="monospace" font-size="10" fill="var(--holo-cyan)" opacity="0.5">
-                    <animate attributeName="opacity" values="0.5;0;0.5" dur="2s" repeatCount="indefinite"/>
-                </text>
-                <!-- Glow -->
-                <ellipse cx="200" cy="80" rx="50" ry="40" fill="url(#pod-glow)"/>
-            </svg>`;
-        }
-
-        // Fallback for null or unknown types
-        return `<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="180" fill="#0a0e17"/>
-            <text x="200" y="95" text-anchor="middle" font-family="monospace" font-size="12" fill="var(--text-muted)" opacity="0.4">NO TRANSMISSION</text>
-        </svg>`;
+    function saveTasks() {
+        localStorage.setItem('pico-tasks', JSON.stringify(tasks));
     }
 
-    /* ── Render Grid ────────────────────────── */
-    function renderGrid(list) {
-        const grid = document.getElementById('holonet-grid');
-        const tmpl = document.getElementById('side-panel-template');
+    function renderChecklist() {
+        checklistList.innerHTML = '';
 
-        if (!list.length) {
-            grid.innerHTML = `<div class="no-results">No transmissions match your search parameters.</div>`;
+        if (tasks.length === 0) {
+            checklistEmpty.style.display = 'block';
+            checklistProgress.style.display = 'none';
             return;
         }
 
-        let html = '';
-        let nonHeroCount = 0;
-        let sideInjected = false;
+        checklistEmpty.style.display = 'none';
+        checklistProgress.style.display = 'flex';
 
-        // Hero article first
-        list.forEach(a => {
-            if (a.hero) {
-                const graphic = a.graphic ? `<div class="article-graphic">${getGraphicSvg(a.graphic)}</div>` : '';
-                html += `
-                <article class="article-card hero" onclick="openArticle(${a.id})">
-                    <div class="hero-badge">⚡ Breaking</div>
-                    <div>
-                        <div class="article-category">${escHtml(a.category)}</div>
-                        <h2 class="article-title">${escHtml(a.title)}</h2>
-                        ${graphic}
-                        <p class="article-snippet">${stripHtml(a.content).substring(0, 200)}${stripHtml(a.content).length > 200 ? '…' : ''}</p>
-                    </div>
-                    <div class="article-meta">
-                        <span>${escHtml(a.author)} ✦ ${escHtml(a.date)}</span>
-                        <span class="read-more">Open Transmission →</span>
-                    </div>
-                </article>`;
-            }
+        const total = tasks.length;
+        const done = tasks.filter(t => t.done).length;
+        const pct = total > 0 ? (done / total) * 100 : 0;
+
+        checklistProgressText.textContent = `${done} / ${total}`;
+        checklistProgressFill.style.width = `${pct}%`;
+
+        tasks.forEach((task, idx) => {
+            const li = document.createElement('li');
+            li.className = `checklist-item${task.done ? ' done' : ''}`;
+
+            li.innerHTML = `
+                <div class="checklist-checkbox" data-idx="${idx}">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M2 6L5 9L10 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="checklist-text">${escHtml(task.text)}</span>
+                <button class="checklist-delete" data-idx="${idx}" title="Remove">×</button>
+            `;
+
+            checklistList.appendChild(li);
         });
+    }
 
-        // Non-hero articles
-        list.forEach(a => {
-            if (!a.hero) {
-                const graphic = a.graphic ? `<div class="article-graphic">${getGraphicSvg(a.graphic)}</div>` : '';
-                html += `
-                <article class="article-card" onclick="openArticle(${a.id})">
-                    <div>
-                        <div class="article-category">${escHtml(a.category)}</div>
-                        ${graphic}
-                        <h3 class="article-title">${escHtml(a.title)}</h3>
-                        <p class="article-snippet">${stripHtml(a.content).substring(0, 140)}${stripHtml(a.content).length > 140 ? '…' : ''}</p>
-                    </div>
-                    <div class="article-meta">
-                        <span>${escHtml(a.author)}</span>
-                        <span class="read-more">Open →</span>
-                    </div>
-                </article>`;
+    function addTask() {
+        const text = checklistInput.value.trim();
+        if (!text) return;
+        tasks.push({ text, done: false, id: Date.now() });
+        checklistInput.value = '';
+        saveTasks();
+        renderChecklist();
+        checklistInput.focus();
+    }
 
-                nonHeroCount++;
-                if (nonHeroCount === 3 && !sideInjected) {
-                    html += `<div class="side-panel">${tmpl.innerHTML}</div>`;
-                    sideInjected = true;
-                }
-            }
-        });
+    checklistAddBtn.addEventListener('click', addTask);
+    checklistInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') addTask();
+    });
 
-        if (!sideInjected) {
-            html += `<div class="side-panel">${tmpl.innerHTML}</div>`;
+    checklistList.addEventListener('click', e => {
+        const checkbox = e.target.closest('.checklist-checkbox');
+        const deleteBtn = e.target.closest('.checklist-delete');
+
+        if (checkbox) {
+            const idx = parseInt(checkbox.dataset.idx);
+            tasks[idx].done = !tasks[idx].done;
+            saveTasks();
+            renderChecklist();
         }
 
-        grid.innerHTML = html;
-    }
-
-    /* ── Helpers ────────────────────────────── */
-    function stripHtml(html) {
-        const tmp = document.createElement('div');
-        tmp.innerHTML = html;
-        return tmp.textContent || tmp.innerText || '';
-    }
+        if (deleteBtn) {
+            const idx = parseInt(deleteBtn.dataset.idx);
+            tasks.splice(idx, 1);
+            saveTasks();
+            renderChecklist();
+        }
+    });
 
     function escHtml(str) {
         const tmp = document.createElement('div');
@@ -1415,55 +974,7 @@
         return tmp.innerHTML;
     }
 
-    /* ── Search ─────────────────────────────── */
-    function handleSearch() {
-        const q = document.getElementById('search-input').value.toLowerCase().trim();
-        if (!q) { renderGrid(allArticles); return; }
-        const filtered = allArticles.filter(a =>
-            a.title.toLowerCase().includes(q) ||
-            a.category.toLowerCase().includes(q) ||
-            stripHtml(a.content).toLowerCase().includes(q) ||
-            a.author.toLowerCase().includes(q)
-        );
-        renderGrid(filtered);
-    }
-
-    /* ── Theme Toggle ───────────────────────── */
-    function toggleTheme() {
-        const body = document.body;
-        const btn = document.getElementById('theme-btn');
-        if (body.getAttribute('data-theme') === 'holo-bright') {
-            body.setAttribute('data-theme', 'holonet');
-            btn.textContent = 'Bright Holo';
-        } else {
-            body.setAttribute('data-theme', 'holo-bright');
-            btn.textContent = 'Dark Holo';
-        }
-    }
-
-    /* ── Modal ──────────────────────────────── */
-    function openArticle(id) {
-        const a = articlesMap[id];
-        if (!a) return;
-        document.getElementById('modal-content').innerHTML = `
-            <div class="article-category">${escHtml(a.category)}</div>
-            <h2 class="article-title">${escHtml(a.title)}</h2>
-            <div class="modal-meta">${escHtml(a.author)} ✦ ${escHtml(a.date)} ✦ Coruscant Relay</div>
-            <div class="modal-body">${a.content}</div>
-        `;
-        document.getElementById('modal-overlay').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeArticle() {
-        document.getElementById('modal-overlay').classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    window.addEventListener('keydown', e => { if (e.key === 'Escape') closeArticle(); });
-
-    /* ── Init ───────────────────────────────── */
-    window.addEventListener('DOMContentLoaded', loadArticles);
+    renderChecklist();
     </script>
 </body>
 </html>
