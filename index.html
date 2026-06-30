@@ -610,6 +610,62 @@
         }
 
         /* ═══════════════════════════════════════════
+           WORLD CLOCK WIDGET
+           ═══════════════════════════════════════════ */
+        .worldclock-card {
+            grid-column: span 1;
+        }
+
+        .worldclock-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .worldclock-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .worldclock-item:hover {
+            border-color: var(--border-light);
+        }
+
+        .worldclock-city {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .worldclock-country {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-top: 1px;
+        }
+
+        .worldclock-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .worldclock-diff {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            margin-top: 1px;
+            text-align: right;
+        }
+
+        /* ═══════════════════════════════════════════
            FOOTER
            ═══════════════════════════════════════════ */
         .footer {
@@ -656,6 +712,15 @@
                 <div class="clock-time" id="clock-time">00:00<span class="clock-seconds" id="clock-seconds">:00</span></div>
                 <div class="clock-date" id="clock-date"></div>
                 <div class="clock-timezone" id="clock-timezone"></div>
+            </div>
+
+            <!-- World Clock -->
+            <div class="card worldclock-card">
+                <div class="card-header">
+                    <span class="card-label">World Clock</span>
+                    <div class="card-icon" style="background: var(--accent-dim);">🌍</div>
+                </div>
+                <div class="worldclock-list" id="worldclock-list"></div>
             </div>
 
             <!-- Notes -->
@@ -771,6 +836,58 @@
 
     updateClock();
     setInterval(updateClock, 1000);
+
+    // ═══════════════════════════════════════════
+    // WORLD CLOCK
+    // ═══════════════════════════════════════════
+    const worldClocks = [
+        { city: 'Zurich',   country: 'Switzerland', tz: 'Europe/Zurich' },
+        { city: 'Rome',     country: 'Italy',       tz: 'Europe/Rome' },
+        { city: 'Paris',    country: 'France',      tz: 'Europe/Paris' },
+    ];
+
+    function formatWorldTime(tz) {
+        return new Intl.DateTimeFormat('en-US', {
+            timeZone: tz,
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+        }).format(new Date());
+    }
+
+    function getWorldTimeDiff(tz) {
+        const now = new Date();
+        const localStr = now.toLocaleString('en-US', { timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone });
+        const remoteStr = now.toLocaleString('en-US', { timeZone: tz });
+        const localMs = new Date(localStr).getTime();
+        const remoteMs = new Date(remoteStr).getTime();
+        const diffHours = Math.round((remoteMs - localMs) / 3600000);
+        if (diffHours === 0) return 'Same time';
+        return diffHours > 0 ? `+${diffHours}h` : `${diffHours}h`;
+    }
+
+    function updateWorldClocks() {
+        const container = document.getElementById('worldclock-list');
+        container.innerHTML = worldClocks.map(wc => {
+            const time = formatWorldTime(wc.tz);
+            const diff = getWorldTimeDiff(wc.tz);
+            return `
+                <div class="worldclock-item">
+                    <div>
+                        <div class="worldclock-city">${wc.city}</div>
+                        <div class="worldclock-country">${wc.country}</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div class="worldclock-time">${time}</div>
+                        <div class="worldclock-diff">${diff}</div>
+                    </div>
+                </div>`;
+        }).join('');
+    }
+
+    updateWorldClocks();
+    setInterval(updateWorldClocks, 1000);
 
     // ═══════════════════════════════════════════
     // NOTES
